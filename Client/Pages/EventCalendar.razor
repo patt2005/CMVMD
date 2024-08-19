@@ -1,0 +1,55 @@
+@page "/calendar"
+@using CMVMD.Client.Services
+@using CMVMD.Client.Services.Article
+@using CMVMD.Shared.Models
+@inject IEventService _eventService
+@inject DialogService _dialogService
+
+<RadzenText style="align-items: center;" class="text-center" TextStyle="TextStyle.H4"><strong>Calendarul
+        evenimentelor</strong></RadzenText>
+
+@inject TooltipService TooltipService
+
+@if (events.Count() != 0)
+{
+    <RadzenScheduler style="height: 600px;" TItem="EventDto" Data=@events StartProperty="StartDate" EndProperty="EndDate"
+    TextProperty="Title" SelectedIndex="0" AppointmentSelect="OnAppointmentClick">
+    <RadzenMonthView />
+    <RadzenYearView />
+</RadzenScheduler>
+}
+else
+{
+    <div style="padding: 2rem;">
+    <RadzenCard>
+        <RadzenText Text="Loading..." />
+    </RadzenCard>
+</div>
+}
+
+@code {
+    IEnumerable<EventDto> events = Enumerable.Empty<EventDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        events = await _eventService.GetEventsAsync();
+        foreach (var eventObj in events)
+        {
+            Console.WriteLine(eventObj.EndDate);
+        }
+    }
+
+    private void OnAppointmentClick(SchedulerAppointmentSelectEventArgs<EventDto> args)
+    {
+        var parameters = new Dictionary<string, object>
+{
+{ "Event", args.Data }
+};
+
+        _dialogService.Open<DialogTemplate>(
+        "Detalii",
+        parameters,
+        new DialogOptions { Width = "500px", Height = "300px" }
+        );
+    }
+}

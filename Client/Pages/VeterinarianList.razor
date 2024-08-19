@@ -1,3 +1,349 @@
 @page "/lista/veterinarilor"
+@using CMVMD.Client.Services.Member
+@using CMVMD.Shared.Models
+@inject IMemberService _memberService
 
-<PageTitle>Lista Medicilor</PageTitle>
+<PageTitle>Lista Medicilor Veterinari</PageTitle>
+
+<RadzenText style="align-items: center; padding-bottom: 1%;" class="text-center" TextStyle="TextStyle.H4"><strong>Lista
+        Medicilor
+        Veterinari</strong></RadzenText>
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
+    FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="6" AllowPaging="true"
+    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@veterinarians"
+    LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.FirstName)" Title="Nume" MinWidth="150px"
+            Width="auto" />
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.LastName)" Title="Prenume" MinWidth="150px"
+            Width="auto" />
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.VeterinarianCode)"
+            Title="Codul medicului veterinar atribuit de CMV" MinWidth="200px" Width="auto" />
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.DiplomaId)" Title="Diploma seria/numărul"
+            MinWidth="200px" Width="auto" />
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.RegistrationDate)" Title="Data înscrierii în CMV"
+            MinWidth="150px" Width="auto" />
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.IsActive)" Title="Statutul medicului veterinar în CMV"
+            MinWidth="150px" Width="auto">
+            <Template Context="data">
+                @if (data.IsActive)
+                {
+                    <div
+                        style="padding: 1rem; background: linear-gradient(135deg, #e0f7fa, #b9fbc0); border-radius: 12px; box-shadow: none; max-width: 250px; text-align: center; color: #00796b;">
+                        <RadzenText TextStyle="TextStyle.Body1" Style="font-weight: 600;">
+                            Activ
+                        </RadzenText>
+                    </div>
+                }
+                else
+                {
+                    <div
+                        style="padding: 1rem; background: linear-gradient(135deg, #ffebee, #fbd3c1); border-radius: 12px; box-shadow: none; max-width: 250px; text-align: center; color: #c62828;">
+                        <RadzenText TextStyle="TextStyle.Body1" Style="font-weight: 600;">
+                            Inactiv
+                        </RadzenText>
+                    </div>
+                }
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Property="@nameof(VeterinarianDto.HasPenalties)" Title="Sancțiuni" MinWidth="150px"
+            Width="auto">
+            <Template Context="data">
+                @if (data.HasPenalties)
+                {
+                    <RadzenText TextStyle="TextStyle.Body1">
+                        Sunt
+                    </RadzenText>
+                }
+                else
+                {
+                    <RadzenText TextStyle="TextStyle.Body1">
+                        Nu Sunt
+                    </RadzenText>
+                }
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    @* private IEnumerable<VeterinarianDto> veterinarians { get; set; } = default!; *@
+
+    @* protected override async Task OnInitializedAsync()
+{
+veterinarians = await _memberService.GetVeterinarians();
+} *@
+    private IEnumerable<VeterinarianDto> veterinarians = new List<VeterinarianDto>
+{
+// Existing veterinarians
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "John",
+LastName = "Doe",
+VeterinarianCode = "VET12345",
+DiplomaId = "DIP67890",
+RegistrationDate = new DateTime(2023, 1, 15),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Jane",
+LastName = "Smith",
+VeterinarianCode = "VET54321",
+DiplomaId = "DIP09876",
+RegistrationDate = new DateTime(2022, 5, 20),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Alice",
+LastName = "Johnson",
+VeterinarianCode = "VET67890",
+DiplomaId = "DIP11223",
+RegistrationDate = new DateTime(2024, 3, 10),
+IsActive = false,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Bob",
+LastName = "Williams",
+VeterinarianCode = "VET98765",
+DiplomaId = "DIP44556",
+RegistrationDate = new DateTime(2021, 7, 25),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Eve",
+LastName = "Davis",
+VeterinarianCode = "VET13579",
+DiplomaId = "DIP24680",
+RegistrationDate = new DateTime(2023, 11, 5),
+IsActive = true,
+HasPenalties = false
+},
+
+// Additional veterinarians
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Liam",
+LastName = "Brown",
+VeterinarianCode = "VET24680",
+DiplomaId = "DIP12345",
+RegistrationDate = new DateTime(2022, 2, 12),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Olivia",
+LastName = "Wilson",
+VeterinarianCode = "VET13579",
+DiplomaId = "DIP67890",
+RegistrationDate = new DateTime(2021, 6, 22),
+IsActive = false,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Noah",
+LastName = "Taylor",
+VeterinarianCode = "VET98765",
+DiplomaId = "DIP54321",
+RegistrationDate = new DateTime(2023, 4, 14),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Emma",
+LastName = "Anderson",
+VeterinarianCode = "VET67890",
+DiplomaId = "DIP11223",
+RegistrationDate = new DateTime(2020, 9, 30),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Mason",
+LastName = "Thomas",
+VeterinarianCode = "VET12345",
+DiplomaId = "DIP98765",
+RegistrationDate = new DateTime(2022, 11, 18),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Ava",
+LastName = "Jackson",
+VeterinarianCode = "VET54321",
+DiplomaId = "DIP24680",
+RegistrationDate = new DateTime(2023, 7, 8),
+IsActive = false,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Ethan",
+LastName = "Martin",
+VeterinarianCode = "VET98765",
+DiplomaId = "DIP12345",
+RegistrationDate = new DateTime(2022, 10, 15),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Sophia",
+LastName = "White",
+VeterinarianCode = "VET67890",
+DiplomaId = "DIP54321",
+RegistrationDate = new DateTime(2021, 3, 25),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "James",
+LastName = "Harris",
+VeterinarianCode = "VET24680",
+DiplomaId = "DIP67890",
+RegistrationDate = new DateTime(2023, 6, 10),
+IsActive = false,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Isabella",
+LastName = "Clark",
+VeterinarianCode = "VET13579",
+DiplomaId = "DIP98765",
+RegistrationDate = new DateTime(2022, 4, 7),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Benjamin",
+LastName = "Lewis",
+VeterinarianCode = "VET54321",
+DiplomaId = "DIP12345",
+RegistrationDate = new DateTime(2021, 8, 19),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Mia",
+LastName = "Walker",
+VeterinarianCode = "VET67890",
+DiplomaId = "DIP24680",
+RegistrationDate = new DateTime(2023, 5, 12),
+IsActive = false,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Logan",
+LastName = "Hall",
+VeterinarianCode = "VET98765",
+DiplomaId = "DIP54321",
+RegistrationDate = new DateTime(2022, 12, 3),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Charlotte",
+LastName = "Allen",
+VeterinarianCode = "VET13579",
+DiplomaId = "DIP67890",
+RegistrationDate = new DateTime(2023, 2, 8),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Alexander",
+LastName = "Young",
+VeterinarianCode = "VET12345",
+DiplomaId = "DIP98765",
+RegistrationDate = new DateTime(2021, 1, 15),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Amelia",
+LastName = "King",
+VeterinarianCode = "VET54321",
+DiplomaId = "DIP24680",
+RegistrationDate = new DateTime(2022, 7, 25),
+IsActive = false,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Jacob",
+LastName = "Scott",
+VeterinarianCode = "VET67890",
+DiplomaId = "DIP12345",
+RegistrationDate = new DateTime(2023, 8, 15),
+IsActive = true,
+HasPenalties = false
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Harper",
+LastName = "Green",
+VeterinarianCode = "VET98765",
+DiplomaId = "DIP67890",
+RegistrationDate = new DateTime(2020, 11, 20),
+IsActive = true,
+HasPenalties = true
+},
+new VeterinarianDto
+{
+Id = Guid.NewGuid(),
+FirstName = "Michael",
+LastName = "Adams",
+VeterinarianCode = "VET13579",
+DiplomaId = "DIP54321",
+RegistrationDate = new DateTime(2021, 5, 22),
+IsActive = false,
+HasPenalties = false
+}
+};
+
+
+}

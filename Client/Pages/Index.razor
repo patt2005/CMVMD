@@ -1,7 +1,9 @@
 ﻿@page "/"
+@using CMVMD.Client.Services
 @using CMVMD.Client.Services.Article
 @using CMVMD.Shared.Models
 @inject NavigationManager Navigation
+@inject IEventService _eventService
 
 @inject IArticleService _articleService
 
@@ -103,6 +105,63 @@
         Style="font-size: x-large; padding: 20px; border-radius: 15px;" ButtonStyle="ButtonStyle.Primary" />
 </div>
 
+<RadzenText style="padding-top: 4%; padding-bottom: 3%; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4"><strong>Evenimente curente</strong></RadzenText>
+
+<div id="eventCarousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="d-flex">
+                @foreach (EventDto eventObj in events.Take(3).ToList())
+                {
+                    <div class="px-2 col-md-4 mb-4">
+                        <a href="/eveniment/@eventObj.Id" style="text-decoration: none;">
+                            <div class="card">
+                                <img src="@eventObj.File!.FileUrl" class="card-img-top" alt="Image 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">@eventObj.Title</h5>
+                                    <p class="card-text truncate-text">@eventObj.SubTitle</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                @foreach (EventDto eventObj in events.Take(3).ToList())
+                {
+                    <div class="px-2 col-md-4 mb-4">
+                        <a href="/articol/@eventObj.Id" style="text-decoration: none;">
+                            <div class="card">
+                                <img src="@eventObj.File!.FileUrl" class="card-img-top" alt="Image 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">@eventObj.Title</h5>
+                                    <p class="card-text truncate-text">@eventObj.SubTitle</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="center-container">
+    <RadzenButton Variant="Variant.Flat" Click="NavigateToCalendar" Text="Calendarul evenimentelor"
+        Style="font-size: x-large; padding: 20px; border-radius: 15px;" ButtonStyle="ButtonStyle.Primary" />
+</div>
+
 <RadzenText style="padding-top: 2%; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
     <strong>Parteneri</strong>
 </RadzenText>
@@ -131,7 +190,7 @@
             <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
                 class="card-img-top" style="object-fit: contain" alt="Image 3">
             <div class="card-body">
-                <h5 class="card-title">Ministerul Agriculturi şi Industriei</h5>
+                <h5 class="card-title">Ministerul Agriculturi şi Industriei Alimentelor</h5>
             </div>
         </div>
     </div>
@@ -141,14 +200,21 @@
 
 @code {
     IEnumerable<ArticleDto> articles = Enumerable.Empty<ArticleDto>();
+    IEnumerable<EventDto> events = Enumerable.Empty<EventDto>();
 
     protected override async Task OnInitializedAsync()
     {
         articles = await _articleService.GetAllArticlesAsync();
+        events = await _eventService.GetEventsAsync();
     }
 
     private void NaviateToArticles()
     {
         Navigation.NavigateTo("/articole");
+    }
+
+    private void NavigateToCalendar()
+    {
+        Navigation.NavigateTo("/calendar");
     }
 }

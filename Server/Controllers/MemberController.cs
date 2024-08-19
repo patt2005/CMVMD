@@ -7,7 +7,7 @@ using Persistance.Data;
 namespace CMVMD.Server.Controllers;
 
 [ApiController]
-[Route("api/members/")]
+[Route("api/members")]
 
 public class MemberController : ControllerBase
 {
@@ -41,6 +41,14 @@ public class MemberController : ControllerBase
     {
         var comision = await _appDbContext.ExecutiveOfficeMembers.ToListAsync();
         var response = _mapper.Map<IEnumerable<ExecutiveMemberDto>>(comision);
+        return Ok(response);
+    }
+
+    [HttpGet("veterinarian/getall")]
+    public async Task<IActionResult> GetVeterinarians()
+    {
+        var comision = await _appDbContext.Veterinarians.ToListAsync();
+        var response = _mapper.Map<IEnumerable<VeterinarianDto>>(comision);
         return Ok(response);
     }
 }

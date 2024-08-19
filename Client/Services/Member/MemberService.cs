@@ -29,4 +29,10 @@ public class MemberService : IMemberService
         var httpResponse = await _httpClient.GetFromJsonAsync<IEnumerable<ExecutiveMemberDto>>("api/members/executive/office/getall");
         return httpResponse!;
     }
+
+    public async Task<IEnumerable<VeterinarianDto>> GetVeterinarians()
+    {
+        var httpResponse = await _httpClient.GetFromJsonAsync<IEnumerable<VeterinarianDto>>("api/members/veterinarian/getall");
+        return httpResponse!;
+    }
 }

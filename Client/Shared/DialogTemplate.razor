@@ -1,0 +1,28 @@
+@using CMVMD.Shared.Models
+@inject DialogService _dialogService
+@inject NavigationManager Navigation
+
+<div
+    style="padding: 1rem; text-align: center; background-color: #f8f9fa; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; border-radius: 10px;">
+    <RadzenText TextStyle="TextStyle.H5" FontWeight="bold" Color="#333" Style="margin-bottom: 0.5rem;">
+        @Event.Title
+    </RadzenText>
+    <RadzenText TextStyle="TextStyle.H6" FontWeight="normal" Color="#555" Style="margin-bottom: 1rem;">
+        @Event.SubTitle
+    </RadzenText>
+    <RadzenText TextStyle="TextStyle.Body1" Color="#007bff" Style="margin-bottom: 0.5rem;">
+        @Event.StartDate.ToString("MMMM dd, yyyy HH:mm")
+    </RadzenText>
+    <RadzenButton Text="Mai multe" ButtonStyle="ButtonStyle.Primary" Size="ButtonSize.Medium" Click="OnClick"
+        Style="width: 100px; margin-top: 1rem;" />
+</div>
+
+@code {
+    [Parameter]
+    public EventDto Event { get; set; } = default!;
+
+    private void OnClick()
+    {
+        Navigation.NavigateTo($"/eveniment/{Event.Id}");
+    }
+}

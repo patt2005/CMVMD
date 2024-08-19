@@ -44,7 +44,7 @@ public class ArticleController : ControllerBase
     public async Task<IActionResult> GetArticleById(string id)
     {
         var guidId = Guid.Parse(id);
-        var article = await _appDbContext.Articles.FirstAsync(a => a.Id == guidId);
+        var article = await _appDbContext.Articles.Include(a => a.File).FirstAsync(a => a.Id == guidId);
         var data = _mapper.Map<ArticleDto>(article);
         return Ok(data);
     }

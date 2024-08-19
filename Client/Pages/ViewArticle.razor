@@ -1,27 +1,57 @@
 @page "/articol/{ArticleId}"
 @inject IArticleService _articleService
+@inject NavigationManager Navigation
 
 @using CMVMD.Client.Services.Article
-@using CMVMD.Shared.Models;
+@using CMVMD.Shared.Models
 
 @if (article != null)
 {
-    <RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" TextStyle="TextStyle.H4">
-    <strong>@article.Title</strong>
-</RadzenText>
+    <div style="padding: 2rem;">
+    <RadzenCard Style="background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+        <div style="padding: 1rem;">
+            <RadzenText TextStyle="TextStyle.H2" FontWeight="700" Color="#333333">
+                @article.Title
+            </RadzenText>
 
-    <RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" TextStyle="TextStyle.H5">
-        <strong>@article.SubTitle</strong>
-    </RadzenText>
+            <RadzenText TextStyle="TextStyle.H4" FontWeight="400" Color="#6c757d" Style="margin-top: 0.5rem;">
+                @article.SubTitle
+            </RadzenText>
 
-    @((MarkupString)article.Text)
+            <div style="margin-top: 1rem; padding: 1rem; background-color: #f8f9fa; border-radius: 5px;">
+                @((MarkupString)article.Text)
+            </div>
+
+            @if (article.File != null)
+                {
+                    <div style="margin-top: 1rem; text-align: center;">
+                        <RadzenImage Path="@article.File.FileUrl" Style="max-width: 100%; height: auto; border-radius: 5px;"
+                            AlternateText="Article Image" />
+                    </div>
+                }
+
+                <div style="text-align: right; padding-top: 1rem;">
+                    <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
+                        Click="@(args => Navigation.NavigateTo("/"))" />
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+}
+else
+{
+    <div style="padding: 2rem;">
+    <RadzenCard>
+        <RadzenText Text="Loading..." />
+    </RadzenCard>
+</div>
 }
 
 @code {
     [Parameter]
     public string ArticleId { get; set; } = default!;
 
-    ArticleDto? article { get; set; }
+    private ArticleDto? article { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

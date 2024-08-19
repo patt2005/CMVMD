@@ -47,7 +47,6 @@
 
     private void OnCompleted(UploadCompleteEventArgs e)
     {
-        Console.WriteLine("On complete ----------------------");
         var file = JsonSerializer.Deserialize<FileDto>(e.JsonResponse);
         documentDto.File = file;
         documentDto.FileId = file!.Id;

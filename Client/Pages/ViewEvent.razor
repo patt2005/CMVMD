@@ -1,0 +1,48 @@
+@page "/eveniment/{EventId}"
+@using CMVMD.Client.Services
+@using CMVMD.Shared.Models
+@inject IEventService _eventService
+@inject NavigationManager Navigation
+
+@if (eventDto != null)
+{
+    <div style="padding: 2rem;">
+    <RadzenCard Style="background-color: #f4f4f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px;">
+        <RadzenImage Path="@eventDto.File!.FileUrl" Style="width: 50%; height: auto; border-radius: 10px;"
+            AlternateText="Event Image" />
+
+        <div style="padding: 1rem 0;">
+            <RadzenText TextStyle="TextStyle.H3" FontWeight="600">@eventDto.Title</RadzenText>
+            <RadzenText TextStyle="TextStyle.H5" FontWeight="400" Color="#6c757d">@eventDto.SubTitle</RadzenText>
+            <RadzenText TextStyle="TextStyle.Body1" Color="#007bff">@eventDto.StartDate.ToString("MMMM dd, yyyy HH:mm")
+            </RadzenText>
+        </div>
+
+        <div style="padding: 1rem 0;">
+            <RadzenText TextStyle="TextStyle.Body1" Color="#333333">@eventDto.Text</RadzenText>
+        </div>
+
+        <div style="text-align: right; padding-top: 1rem;">
+            <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
+                Click="@(args => Navigation.NavigateTo("/"))" />
+        </div>
+    </RadzenCard>
+</div>
+}
+else
+{
+    <RadzenCard>
+    <RadzenText Text="Loading..." />
+</RadzenCard>
+}
+
+@code {
+    [Parameter]
+    public string EventId { get; set; } = default!;
+    private EventDto? eventDto;
+
+    protected override async Task OnInitializedAsync()
+    {
+        eventDto = await _eventService.GetByIdAsync(EventId);
+    }
+}

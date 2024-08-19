@@ -54,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdEFydGljbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EventCalendar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXZlbnRDYWxlbmRhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ExecutiveOffice.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXhlY3V0aXZlT2ZmaWNlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -76,6 +80,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ViewArticle.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0FydGljbGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ViewEvent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0V2ZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/DialogTemplate.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RpYWxvZ1RlbXBsYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/DocumentsTable.razor]

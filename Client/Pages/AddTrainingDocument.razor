@@ -36,13 +36,11 @@
     </RadzenTemplateForm>
 </div>
 
-
 @code {
     private DocumentDto documentDto = new DocumentDto();
 
     private void OnCompleted(UploadCompleteEventArgs e)
     {
-        Console.WriteLine("On complete ----------------------");
         var file = JsonSerializer.Deserialize<FileDto>(e.JsonResponse);
         documentDto.File = file;
         documentDto.FileId = file!.Id;
