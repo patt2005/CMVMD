@@ -1,0 +1,22 @@
+@page "/formare/documente"
+@using CMVMD.Client.Services.Document
+@using CMVMD.Shared.Models
+@inject IDocumentService _documentService
+
+<PageTitle>Formarea profesională</PageTitle>
+
+<RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4">
+    <strong>Formarea profesională continuă</strong>
+</RadzenText>
+
+<DocumentsTable Documents="@documents"></DocumentsTable>
+
+@code {
+    IEnumerable<DocumentDto> documents = Enumerable.Empty<DocumentDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        documents = await _documentService.GetTrainingDocuments();
+    }
+}

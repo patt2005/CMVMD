@@ -1,0 +1,106 @@
+/* Style the carousel control buttons */
+.carousel-control-prev[b-db127uti6s],
+.carousel-control-next[b-db127uti6s] {
+    width: 50px;
+    /* Set a fixed width */
+    height: 50px;
+    /* Set a fixed height */
+    border-radius: 50%;
+    /* Make the buttons circular */
+    background-color: black;
+    /* Background color of the button */
+    opacity: 0.7;
+    /* Optional: Adjust opacity for visual effect */
+    border: none;
+    /* Remove default border */
+    position: absolute;
+    /* Position buttons absolutely within the carousel */
+    top: 50%;
+    /* Center vertically */
+    transform: translateY(-50%);
+    /* Adjust for exact vertical center */
+    z-index: 10;
+    /* Ensure buttons are above other content */
+}
+
+/* Style the previous button */
+.carousel-control-prev[b-db127uti6s] {
+    left: 20px;
+    /* Add horizontal padding from the left edge */
+}
+
+/* Style the next button */
+.carousel-control-next[b-db127uti6s] {
+    right: 20px;
+    /* Add horizontal padding from the right edge */
+}
+
+.card[b-db127uti6s] {
+    border: 1px solid #ddd;
+    /* Optional: Add a border around the cards */
+    border-radius: 8px;
+    /* Optional: Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Optional: Shadow effect */
+}
+
+.card-img-top[b-db127uti6s] {
+    height: 200px;
+    /* Set a fixed height for images */
+    object-fit: cover;
+    /* Ensure images cover the area without distortion */
+}
+
+.card-body[b-db127uti6s] {
+    padding: 1rem;
+    /* Adjust padding inside the card */
+}
+
+.card-title[b-db127uti6s] {
+    font-size: 1.25rem;
+    /* Adjust title font size */
+    margin-bottom: 0.5rem;
+    /* Add some space below the title */
+}
+
+.center-container[b-db127uti6s] {
+    display: flex;
+    /* Enable Flexbox */
+    justify-content: center;
+    /* Center horizontally */
+    margin: 2%;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+}
+
+.card-text[b-db127uti6s] {
+    font-size: 0.875rem;
+    /* Adjust description font size */
+    color: #555;
+    /* Optional: Change text color */
+}
+
+/* Style the icons inside the buttons */
+.carousel-control-prev-icon[b-db127uti6s],
+.carousel-control-next-icon[b-db127uti6s] {
+    background-color: black;
+    /* Set background color of icons */
+    width: 20px;
+    /* Adjust width of icons */
+    height: 20px;
+    /* Adjust height of icons */
+    background-size: 100% 100%;
+    /* Ensure icons fit within the button */
+}
+
+/* Optional: Change arrow color or adjust positioning */
+.carousel-control-prev-icon[b-db127uti6s]::before,
+.carousel-control-next-icon[b-db127uti6s]::before {
+    color: white;
+    /* Change arrow color */
+    font-size: 20px;
+    /* Adjust arrow size */
+    line-height: 50px;
+    /* Center the arrow vertically */
+}

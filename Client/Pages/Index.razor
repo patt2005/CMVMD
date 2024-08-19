@@ -1,0 +1,154 @@
+﻿@page "/"
+@using CMVMD.Client.Services.Article
+@using CMVMD.Shared.Models
+@inject NavigationManager Navigation
+
+@inject IArticleService _articleService
+
+<PageTitle>Acasă</PageTitle>
+
+<style>
+    .truncate-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+</style>
+
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="5000">
+            <RadzenImage Path="images/image1.jpeg" AlternateText="community"
+                style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <RadzenImage Path="images/image2.jpeg" AlternateText="community"
+                style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
+        </div>
+        <div class="carousel-item" data-bs-interval="5000">
+            <RadzenImage Path="images/image3.jpeg" AlternateText="community"
+                style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<RadzenText style="padding-top: 4%; padding-bottom: 3%; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4"><strong>Articole
+        recent publicate</strong></RadzenText>
+
+<div id="articlesCarousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="d-flex">
+                @foreach (ArticleDto article in articles.Take(3).ToList())
+                {
+                    <div class="px-2 col-md-4 mb-4">
+                        <a href="/articol/@article.Id" style="text-decoration: none;">
+                            <div class="card">
+                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Image 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">@article.Title</h5>
+                                    <p class="card-text truncate-text">@article.SubTitle</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="d-flex">
+                @foreach (ArticleDto article in articles.Skip(3).Take(3).ToList())
+                {
+                    <div class="px-2 col-md-4 mb-4">
+                        <a href="/articol/@article.Id" style="text-decoration: none;">
+                            <div class="card">
+                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Image 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">@article.Title</h5>
+                                    <p class="card-text truncate-text">@article.SubTitle</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#articlesCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#articlesCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="center-container">
+    <RadzenButton Variant="Variant.Flat" Click="NaviateToArticles" Text="Mai multe articole"
+        Style="font-size: x-large; padding: 20px; border-radius: 15px;" ButtonStyle="ButtonStyle.Primary" />
+</div>
+
+<RadzenText style="padding-top: 2%; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
+    <strong>Parteneri</strong>
+</RadzenText>
+
+<div class="row" style="padding-top: 2%;">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="https://cdn.sanity.io/images/cys4a6ni/production/35db47102f20e165a7d6be19aefb8b46dd021510-513x509.jpg"
+                class="card-img-top" style="object-fit: contain" alt="Image 3">
+            <div class="card-body">
+                <h5 class="card-title">Agenția Națională pentru Siguranța Alimentelor</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="https://cdn.sanity.io/images/cys4a6ni/production/017c8976a73672942bf40b1ada28e80809224ad7-300x250.jpg"
+                class="card-img-top" style="object-fit: contain" alt="Image 3">
+            <div class="card-body">
+                <h5 class="card-title">Universitatea Tehnică a Moldovei</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
+                class="card-img-top" style="object-fit: contain" alt="Image 3">
+            <div class="card-body">
+                <h5 class="card-title">Ministerul Agriculturi şi Industriei</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<Footer></Footer>
+
+@code {
+    IEnumerable<ArticleDto> articles = Enumerable.Empty<ArticleDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await _articleService.GetAllArticlesAsync();
+    }
+
+    private void NaviateToArticles()
+    {
+        Navigation.NavigateTo("/articole");
+    }
+}

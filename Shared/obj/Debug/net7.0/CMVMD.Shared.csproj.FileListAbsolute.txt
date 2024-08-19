@@ -1,0 +1,11 @@
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/bin/Debug/net7.0/CMVMD.Shared.deps.json
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/bin/Debug/net7.0/CMVMD.Shared.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/bin/Debug/net7.0/CMVMD.Shared.pdb
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.AssemblyInfoInputs.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.AssemblyInfo.cs
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.csproj.CoreCompileInputs.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/refint/CMVMD.Shared.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/CMVMD.Shared.pdb
+/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/Debug/net7.0/ref/CMVMD.Shared.dll

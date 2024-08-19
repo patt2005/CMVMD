@@ -1,0 +1,52 @@
+@page "/articole"
+@using CMVMD.Shared.Models;
+@using CMVMD.Client.Services.Article;
+@inject IArticleService _articleService
+
+<style>
+    .article-card .card-img-top {
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    .article-card .truncate-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .article-card .card-subtitle {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div style="padding-left: 15%; padding-right: 15%;">
+    <RadzenText style="padding-top: 4%; padding-bottom: 3%; align-items: center;" class="text-center"
+        TextStyle="TextStyle.H4"><strong>Articole</strong></RadzenText>
+    @foreach (var article in articles)
+    {
+        <div class="article-card">
+            <div class="card mb-4 shadow-sm">
+                <img src="@article.File?.FileUrl" class="card-img-top" alt="Article Image" />
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <p class="card-subtitle text-muted">@article.SubTitle</p>
+                    <p class="card-text truncate-text">@article.Text</p>
+                    <a href="/articol/@article.Id" class="btn btn-primary">Citește</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    IEnumerable<ArticleDto> articles = Enumerable.Empty<ArticleDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        articles = await _articleService.GetAllArticlesAsync();
+    }
+}

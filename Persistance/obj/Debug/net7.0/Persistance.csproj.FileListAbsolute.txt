@@ -1,0 +1,14 @@
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/bin/Debug/net7.0/Persistance.deps.json
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/bin/Debug/net7.0/Persistance.runtimeconfig.json
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/bin/Debug/net7.0/Persistance.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/bin/Debug/net7.0/Persistance.pdb
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.csproj.AssemblyReference.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.GeneratedMSBuildEditorConfig.editorconfig
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.AssemblyInfoInputs.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.AssemblyInfo.cs
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.csproj.CoreCompileInputs.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/refint/Persistance.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.pdb
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.genruntimeconfig.cache
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/ref/Persistance.dll

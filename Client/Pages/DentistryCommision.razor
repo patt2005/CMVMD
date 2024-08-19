@@ -1,0 +1,22 @@
+@page "/comisia"
+@using CMVMD.Client.Services.Member
+@using CMVMD.Shared.Models
+@inject IMemberService _memberService
+
+<PageTitle>Comisia de Dentologie</PageTitle>
+
+<RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4">
+    <strong>Comisia de Dentologie şi Litigii</strong>
+</RadzenText>
+
+<MembersTable ExecutiveMembers="@executiveMembers"></MembersTable>
+
+@code {
+    IEnumerable<ExecutiveMemberDto> executiveMembers { get; set; } = Enumerable.Empty<ExecutiveMemberDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        executiveMembers = await _memberService.GetDentistryComisionMembers();
+    }
+}

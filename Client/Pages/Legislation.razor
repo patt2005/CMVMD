@@ -1,0 +1,22 @@
+@page "/legislatie"
+@using CMVMD.Client.Services.Document
+@using CMVMD.Shared.Models
+@inject IDocumentService _documentService
+
+<PageTitle>Legislaţie</PageTitle>
+
+<RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4">
+    <strong>Legislație</strong>
+</RadzenText>
+
+<DocumentsTable Documents="@documents"></DocumentsTable>
+
+@code {
+    IEnumerable<DocumentDto> documents = Enumerable.Empty<DocumentDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        documents = await _documentService.GetLegislationDocuments();
+    }
+}

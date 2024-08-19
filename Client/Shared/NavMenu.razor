@@ -1,0 +1,39 @@
+﻿<RadzenHeader>
+    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+        <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
+        <RadzenText class="pt-2" TextStyle=" TextStyle.H3" style='color:rgba(58,136,244,255)'>
+            <strong>CMV.md</strong>
+        </RadzenText>
+    </RadzenStack>
+</RadzenHeader>
+<RadzenSidebar Responsive="false" @bind-Expanded="@sidebarExpanded" style="position: absolute;">
+    <RadzenPanelMenu>
+        <RadzenPanelMenuItem Text="Acasă" Icon="home" Path="/" Click="HideSideBar" />
+        <RadzenPanelMenuItem Text="Despre CMV" Icon="info">
+            <RadzenPanelMenuItem Text="Prezentarea Generală" Click="HideSideBar" Path="/general" />
+            <RadzenPanelMenuItem Text="Biroul Executiv" Click="HideSideBar" Path="/executiv" />
+            <RadzenPanelMenuItem Text="Comisia de Dentologie şi Litigii" Click="HideSideBar" Path="/comisia" />
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Legislaţie" Icon="gavel" Path="/legislatie" Click="HideSideBar" />
+        <RadzenPanelMenuItem Text="Lista medecilor veterinari" Icon="clinical_notes" Click="HideSideBar"
+            Path="/lista" />
+        <RadzenPanelMenuItem Text="Formarea profesională continuă" Icon="school">
+            <RadzenPanelMenuItem Text="Componența Comisiei" Click="HideSideBar" Path="/componenta" />
+            <RadzenPanelMenuItem Text="Documente" Click="HideSideBar" Path="/formare/documente" />
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Adaugă un articol" Icon="article" Click="HideSideBar" Path="/editeaza" />
+        <RadzenPanelMenuItem Text="Adaugă un document" Icon="upload_file">
+            <RadzenPanelMenuItem Text="Legislaţie" Click="HideSideBar" Path="/legislatie/adauga" />
+            <RadzenPanelMenuItem Text="Formarea profesională continuă" Click="HideSideBar" Path="/formare/adauga" />
+        </RadzenPanelMenuItem>
+    </RadzenPanelMenu>
+</RadzenSidebar>
+
+@code {
+    bool sidebarExpanded = false;
+
+    void HideSideBar()
+    {
+        sidebarExpanded = false;
+    }
+}

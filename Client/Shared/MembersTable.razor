@@ -1,0 +1,20 @@
+@using CMVMD.Shared.Models
+
+@code {
+    [Parameter]
+    public IEnumerable<ExecutiveMemberDto> ExecutiveMembers { get; set; } = default!;
+}
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
+    FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true"
+    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@ExecutiveMembers" ColumnWidth="300px"
+    LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.Id)" Filterable="false" Title="ID" Width="80px"
+            TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.FirstName)" Title="Nume" Width="160px" />
+        <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.LastName)" Title="Prenume" Width="160px" />
+        <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.JobTitle)" Title="Funcția" Width="400px" />
+        <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.Contacts)" Title="Contacte" Width="200px" />
+    </Columns>
+</RadzenDataGrid>

@@ -1,0 +1,30 @@
+@page "/articol/{ArticleId}"
+@inject IArticleService _articleService
+
+@using CMVMD.Client.Services.Article
+@using CMVMD.Shared.Models;
+
+@if (article != null)
+{
+    <RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" TextStyle="TextStyle.H4">
+    <strong>@article.Title</strong>
+</RadzenText>
+
+    <RadzenText style="padding-top: 1%; padding-bottom: 3%; align-items: center;" TextStyle="TextStyle.H5">
+        <strong>@article.SubTitle</strong>
+    </RadzenText>
+
+    @((MarkupString)article.Text)
+}
+
+@code {
+    [Parameter]
+    public string ArticleId { get; set; } = default!;
+
+    ArticleDto? article { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        article = await _articleService.GetByIdAsync(ArticleId);
+    }
+}

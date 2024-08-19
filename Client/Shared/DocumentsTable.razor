@@ -1,0 +1,66 @@
+@page "/documents"
+@using System.Net.Http
+@using System.Threading.Tasks
+@using CMVMD.Shared.Models
+@inject HttpClient HttpClient
+@inject IJSRuntime JSRuntime
+
+<RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
+    FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true"
+    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@Documents" ColumnWidth="300px"
+    LogicalFilterOperator="LogicalFilterOperator.Or">
+    <Columns>
+        <RadzenDataGridColumn Property="@nameof(DocumentDto.Id)" Filterable="false" Title="Id" Width="80px"
+            TextAlign="TextAlign.Center" />
+        <RadzenDataGridColumn Property="@nameof(DocumentDto.Name)" Title="Denumirea" Width="160px" />
+        <RadzenDataGridColumn Property="@nameof(DocumentDto.Description)" Title="Descrierea" Width="160px" />
+        <RadzenDataGridColumn Title="Documente" Width="80px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenButton Click=@(args => DownloadDocument(@data.File!.FileUrl)) Text="Descarcă"
+                    ButtonStyle="ButtonStyle.Primary" />
+            </Template>
+        </RadzenDataGridColumn>
+    </Columns>
+</RadzenDataGrid>
+
+<script>
+    window.downloadFileFromStream = async (fileName, contentStreamReference) => {
+        const arrayBuffer = await contentStreamReference.arrayBuffer();
+        const blob = new Blob([arrayBuffer]);
+        const url = URL.createObjectURL(blob);
+        const anchorElement = document.createElement('a');
+        anchorElement.href = url;
+        anchorElement.download = fileName ?? '';
+        anchorElement.click();
+        anchorElement.remove();
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+@code {
+    [Parameter]
+    public IEnumerable<DocumentDto> Documents { get; set; } = default!;
+
+    private async Task DownloadDocument(string fileUrl)
+    {
+        var fileBytes = await GetFileByteArrayAsync(fileUrl);
+        Uri uri = new Uri(fileUrl);
+        string fileName = System.IO.Path.GetFileName(uri.LocalPath);
+        using var streamRef = new DotNetStreamReference(new MemoryStream(fileBytes));
+        await JSRuntime.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+    }
+
+    private async Task<byte[]> GetFileByteArrayAsync(string fileUrl)
+    {
+        try
+        {
+            var response = await HttpClient.GetAsync(fileUrl);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsByteArrayAsync();
+        }
+        catch
+        {
+            return Array.Empty<byte>();
+        }
+    }
+}

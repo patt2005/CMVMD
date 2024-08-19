@@ -1,0 +1,84 @@
+@page "/editeaza"
+@using CMVMD.Client.Services.Article
+@using CMVMD.Shared.Models
+@using System.Text.Json
+@inject IArticleService _articleService
+@inject NavigationManager Navigation
+@inject NotificationService NotificationService
+
+<PageTitle>Editează</PageTitle>
+
+<div style="padding-left: 10%; padding-right: 10%;">
+    <RadzenTemplateForm TItem="ArticleDto" Data=@articleDto Submit=@HandleValidSubmit>
+        <RadzenStack Gap="1rem" class="rz-p-sm-12">
+            <RadzenText style="padding-top: 4%; padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
+                <strong>Editează articolul</strong>
+            </RadzenText>
+            @if (articleDto.File != null)
+            {
+                <RadzenImage Path="@articleDto.File.FileUrl" Style="width: 30rem; border-radius: 15px;"
+                    AlternateText="url image" />
+            }
+            <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
+                ChooseText="Selecteză o imagine" Style="width: 100%" Accept="image/*"
+                InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
+            </RadzenUpload>
+            <RadzenFormField Text="Titlu">
+                <ChildContent>
+                    <RadzenTextBox Name="Title" @bind-Value=@articleDto.Title />
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Title" Text="Articolul trebuie sa aibă un titlu." />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Subtitlu">
+                <ChildContent>
+                    <RadzenTextBox Name="SubTitle" @bind-Value=@articleDto.SubTitle />
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="SubTitle" Text="Articolul trebuie sa aibă un subtitlu." />
+                </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Text">
+                <ChildContent>
+                    <RadzenHtmlEditor UploadUrl="api/upload/image" @bind-Value=@articleDto.Text style="height: 400px;"
+                        Name="Text">
+                    </RadzenHtmlEditor>
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="Text" Text="Textul articolului nu poate fi gol." />
+                </Helper>
+            </RadzenFormField>
+            <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Adaugă"></RadzenButton>
+        </RadzenStack>
+    </RadzenTemplateForm>
+</div>
+
+@code {
+    private ArticleDto articleDto = new ArticleDto();
+
+    private void OnCompleted(UploadCompleteEventArgs e)
+    {
+        var file = JsonSerializer.Deserialize<FileDto>(e.JsonResponse);
+        articleDto.FileId = file!.Id;
+        articleDto.File = file;
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        if (articleDto.File == null)
+        {
+            NotificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Warning,
+                    Summary = "Lipsă imagine",
+                    Detail = "Articolul trebuie să aibă o imagine.",
+                    Duration = 4000
+                });
+            return;
+        }
+
+        await _articleService.AddArticleAsync(articleDto);
+        Navigation.NavigateTo("/");
+    }
+}

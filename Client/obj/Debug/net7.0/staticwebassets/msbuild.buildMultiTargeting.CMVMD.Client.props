@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/CMVMD.Client.props" />
+</Project>
