@@ -891,3 +891,4 @@
 /Users/petrugrigor/Documents/VetSite/CMVMD/Client/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll.gz
 /Users/petrugrigor/Documents/VetSite/CMVMD/Client/bin/Debug/net7.0/Newtonsoft.Json.dll
 /Users/petrugrigor/Documents/VetSite/CMVMD/Client/obj/Debug/net7.0/compressed/3bcddx9web.gz
+/Users/petrugrigor/Documents/VetSite/CMVMD/Client/obj/Debug/net7.0/CMVMD.Client.sourcelink.json

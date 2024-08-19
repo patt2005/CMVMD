@@ -30,17 +30,7 @@ public class DocumentService : IDocumentService
 
     public async Task<IEnumerable<DocumentDto>> GetTrainingDocuments()
     {
-        var response = await _httpClient.GetAsync("api/training/getall");
-        if (response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(content);
-        }
-        else
-        {
-            Console.WriteLine("Got an error while retrieving data from api");
-        }
-        // var documents = await _httpClient.GetFromJsonAsync<IEnumerable<DocumentDto>>("api/training/getall");
-        return Enumerable.Empty<DocumentDto>();
+        var documents = await _httpClient.GetFromJsonAsync<IEnumerable<DocumentDto>>("api/training/getall");
+        return documents!;
     }
 }

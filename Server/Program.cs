@@ -36,7 +36,6 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseStaticFiles();
 
-
 app.UseRouting();
 
 app.MapRazorPages();

@@ -12,3 +12,4 @@
 /Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.pdb
 /Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.genruntimeconfig.cache
 /Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/ref/Persistance.dll
+/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/Debug/net7.0/Persistance.sourcelink.json

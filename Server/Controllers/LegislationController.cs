@@ -21,7 +21,7 @@ public class LegislationController : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddDocument(DocumentDto documentJson)
+    public async Task<IActionResult> AddLegislationDocument(DocumentDto documentJson)
     {
         var legislationDocument = _mapper.Map<LegislationDocument>(documentJson);
         _appDbContext.LegislationDocuments.Add(legislationDocument);
@@ -31,7 +31,7 @@ public class LegislationController : ControllerBase
     }
 
     [HttpGet("getall")]
-    public async Task<IActionResult> GetDocuments()
+    public async Task<IActionResult> GetLegislationDocuments()
     {
         var documents = await _appDbContext.LegislationDocuments.Include(d => d.File).ToListAsync();
         var jsonDocuments = _mapper.Map<IEnumerable<DocumentDto>>(documents);

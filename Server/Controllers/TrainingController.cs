@@ -21,20 +21,20 @@ public class TrainingController : ControllerBase
     }
 
     [HttpPost("add")]
-    public async Task<IActionResult> AddDocument(DocumentDto documentJson)
+    public async Task<IActionResult> AddTrainingDocument(DocumentDto documentJson)
     {
-        var document = _mapper.Map<TrainingDocument>(documentJson);
-        _appDbContext.TrainingDocuments.Add(document);
+        var legislationDocument = _mapper.Map<TrainingDocument>(documentJson);
+        _appDbContext.TrainingDocuments.Add(legislationDocument);
         await _appDbContext.SaveChangesAsync();
 
         return Ok();
     }
 
     [HttpGet("getall")]
-    public async Task<IActionResult> GetDocuments()
+    public async Task<IActionResult> GetTrainingDocuments()
     {
-        // var documents = await _appDbContext.TrainingDocuments.Include(d => d.File).ToListAsync();
-        // var jsonDocuments = _mapper.Map<IEnumerable<DocumentDto>>(documents);
-        return Ok(Enumerable.Empty<DocumentDto>());
+        var documents = await _appDbContext.TrainingDocuments.Include(d => d.File).ToListAsync();
+        var jsonDocuments = _mapper.Map<IEnumerable<DocumentDto>>(documents);
+        return Ok(jsonDocuments);
     }
 }
