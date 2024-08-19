@@ -23,6 +23,11 @@ public class ArticleService : IArticleService
         return httpResponse!;
     }
 
+    private void TestFunc()
+    {
+
+    }
+
     public Task<ArticleDto> GetByIdAsync(string id)
     {
         var httpResponse = _httpClient.GetFromJsonAsync<ArticleDto>($"api/articles/{id}");
