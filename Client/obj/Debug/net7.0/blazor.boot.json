@@ -1,7 +1,7 @@
 {
   "entryAssembly": "CMVMD.Client",
   "resources": {
-    "hash": "sha256-SJ8IhLFFS96LLq5Ybwnwy7MR5R32divEYc+K85M9yAA=",
+    "hash": "sha256-e3g8TZFbin5Hta0QYuEV3zOJ+uUZDQ9l8aGPjud5Jfo=",
     "runtime": {
       "dotnet.7.0.20.buyooa32o7.js": "sha256-eaJTmow4t8eE7FZMZR5Ja41JMOefGCbIYDTdpclGsac=",
       "dotnet.timezones.blat": "sha256-gbATD5HDsHYtW8vdPYh9iSBY4O5CjvMeCSF5xXWF1xo=",
@@ -216,12 +216,12 @@
       "mscorlib.dll": "sha256-HYyp9hO+GKFyupcEiY1PxtBBXbHzefsO3Q8RiQTaNCA=",
       "netstandard.dll": "sha256-N5CcC3sLzGBesbmeJAp5bwxABN9u7SwkIO5qfFjzoik=",
       "System.Private.CoreLib.dll": "sha256-bJS1DJmhjP7PvegYG+Z8O9EDtRY78HKinA3LUMVLlSQ=",
-      "CMVMD.Shared.dll": "sha256-racMAfQxXRMwKTijroyiANydM9R8x/+MBE/3WM4QQc8=",
-      "CMVMD.Client.dll": "sha256-uYCSL1idnazqCDnKvHf/3a6/s38wZwGEnguK7MTotRE="
+      "CMVMD.Shared.dll": "sha256-Lrt7AKSIE28uBsKVuqh1XCq5XgbWIr65V0DOkuPBqzc=",
+      "CMVMD.Client.dll": "sha256-vsRfkSLvaiIZ0Bcy3qGiniaXovWdeR3Jw2Q8aab1EvE="
     },
     "pdb": {
-      "CMVMD.Shared.pdb": "sha256-b6hyCbdLZ6o28/lugoue0cRi8jkeJAMCmBh5p8EqmBI=",
-      "CMVMD.Client.pdb": "sha256-Ywkhhj2Ib25bEZf1ZiMk6ZGNyhImAp3vAZkz6LNjYeg="
+      "CMVMD.Shared.pdb": "sha256-G6g2uiXTVkt9LWl7etUkyTwPYktHjH0VVXS2xwP4/6Q=",
+      "CMVMD.Client.pdb": "sha256-i/9ZFyzB6rfIdaO9LlcwFCGKWI6pgtoe0CuYfv8L0Nc="
     },
     "runtimeAssets": {
       "dotnet.wasm": {

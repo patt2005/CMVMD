@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CMVMD.Client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36213dbd7642e32ba5f1e6c16a907970714d5eeb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d392208859433537d8ccdff58ebc9712ded44a9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("CMVMD.Client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CMVMD.Client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
