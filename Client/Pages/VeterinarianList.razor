@@ -23,7 +23,11 @@
         <RadzenDataGridColumn Property="@nameof(VeterinarianDto.DiplomaId)" Title="Diploma seria/numărul"
             MinWidth="200px" Width="auto" />
         <RadzenDataGridColumn Property="@nameof(VeterinarianDto.RegistrationDate)" Title="Data înscrierii în CMV"
-            MinWidth="150px" Width="auto" />
+            MinWidth="150px" Width="auto">
+            <Template>
+                @((context as VeterinarianDto).RegistrationDate.ToString("dd.MM.yyyy"))
+            </Template>
+        </RadzenDataGridColumn>
         <RadzenDataGridColumn Property="@nameof(VeterinarianDto.IsActive)" Title="Statutul medicului veterinar în CMV"
             MinWidth="150px" Width="auto">
             <Template Context="data">
@@ -52,13 +56,13 @@
             <Template Context="data">
                 @if (data.HasPenalties)
                 {
-                    <RadzenText TextStyle="TextStyle.Body1">
+                    <RadzenText TextStyle="TextStyle.Body1" style="text-align: center">
                         Sunt
                     </RadzenText>
                 }
                 else
                 {
-                    <RadzenText TextStyle="TextStyle.Body1">
+                    <RadzenText TextStyle="TextStyle.Body1" style="text-align: center;">
                         Nu Sunt
                     </RadzenText>
                 }
