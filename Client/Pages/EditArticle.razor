@@ -29,6 +29,8 @@
                 </ChildContent>
                 <Helper>
                     <RadzenRequiredValidator Component="Title" Text="Articolul trebuie sa aibă un titlu." />
+                    <RadzenLengthValidator Component="Title" Min="50"
+                        Text="Titlul trebuie să aibă cel puțin 50 de caractere." />
                 </Helper>
             </RadzenFormField>
             <RadzenFormField Text="Subtitlu">
@@ -37,6 +39,8 @@
                 </ChildContent>
                 <Helper>
                     <RadzenRequiredValidator Component="SubTitle" Text="Articolul trebuie sa aibă un subtitlu." />
+                    <RadzenLengthValidator Component="SubTitle" Min="100"
+                        Text="Subtitlul trebuie să aibă cel puțin 100 de caractere." />
                 </Helper>
             </RadzenFormField>
             <RadzenFormField Text="Text">

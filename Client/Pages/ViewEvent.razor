@@ -18,8 +18,10 @@
             </RadzenText>
         </div>
 
-        <div style="padding: 1rem 0;">
-            <RadzenText TextStyle="TextStyle.Body1" Color="#333333">@eventDto.Text</RadzenText>
+        <div style="padding-top: 10px;">
+            <RadzenText TextStyle="TextStyle.Body1" FontWeight="400" Color="#212529">
+                @((MarkupString)eventDto.Text)
+            </RadzenText>
         </div>
 
         <div style="text-align: right; padding-top: 1rem;">
