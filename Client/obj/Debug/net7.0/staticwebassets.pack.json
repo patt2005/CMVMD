@@ -17,12 +17,12 @@
       "PackagePath": "staticwebassets/Images/image1.jpeg"
     },
     {
-      "Id": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image2.jpeg",
-      "PackagePath": "staticwebassets/Images/image2.jpeg"
+      "Id": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image2.jpg",
+      "PackagePath": "staticwebassets/Images/image2.jpg"
     },
     {
-      "Id": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image3.jpeg",
-      "PackagePath": "staticwebassets/Images/image3.jpeg"
+      "Id": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image3.jpg",
+      "PackagePath": "staticwebassets/Images/image3.jpg"
     },
     {
       "Id": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/logo.png",

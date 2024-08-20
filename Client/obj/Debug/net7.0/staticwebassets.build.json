@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wjYcuwNIxEq1mCSatnR3hzN9soUhdG9lo2MzIZFRDcA=",
+  "Hash": "r+eR+c3Z+7AkiwJ9h7l3ShyLl2FV0ckH+1tyeKJbuR8=",
   "Source": "CMVMD.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9251,12 +9251,12 @@
       "OriginalItemSpec": "wwwroot/Images/image1.jpeg"
     },
     {
-      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image2.jpeg",
+      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image2.jpg",
       "SourceId": "CMVMD.Client",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "Images/image2.jpeg",
+      "RelativePath": "Images/image2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9267,15 +9267,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/image2.jpeg"
+      "OriginalItemSpec": "wwwroot/Images/image2.jpg"
     },
     {
-      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image3.jpeg",
+      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/image3.jpg",
       "SourceId": "CMVMD.Client",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "Images/image3.jpeg",
+      "RelativePath": "Images/image3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9286,7 +9286,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/Images/image3.jpeg"
+      "OriginalItemSpec": "wwwroot/Images/image3.jpg"
     },
     {
       "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/Images/logo.png",
