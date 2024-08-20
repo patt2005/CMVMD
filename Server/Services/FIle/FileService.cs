@@ -8,7 +8,9 @@ public class FileService : IFileService
     {
         var folderPath = FolderPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
-        var filePath = Path.Combine(folderPath, file.FileName);
+        var uniqueFileName = GenerateUniqueFileName(file.FileName);
+
+        var filePath = Path.Combine(folderPath, uniqueFileName);
 
         var directoryPath = Path.GetDirectoryName(filePath);
         if (!Directory.Exists(directoryPath))
@@ -21,16 +23,17 @@ public class FileService : IFileService
             await file.CopyToAsync(stream);
         }
 
-        return filePath;
+        return uniqueFileName;
     }
 
-    public Task Delete(string path)
+    private string GenerateUniqueFileName(string originalFileName)
     {
-        throw new NotImplementedException();
-    }
+        var fileExtension = Path.GetExtension(originalFileName);
 
-    public Task<IFormFile> Get(string path)
-    {
-        throw new NotImplementedException();
+        var uniqueIdentifier = Guid.NewGuid().ToString();
+
+        var uniqueFileName = $"{uniqueIdentifier}{fileExtension}";
+
+        return uniqueFileName;
     }
 }

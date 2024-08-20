@@ -21,15 +21,13 @@ public class UploadController : ControllerBase
         _mapper = mapper;
     }
 
-    const string FolderPath = "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/Files";
-
     [HttpPost("image")]
     public async Task<IActionResult> Image([FromForm] IFormFile file)
     {
         try
         {
-            await _fileService.Add(file);
-            var url = Url.Content($"http://localhost:5243/Files/{file.FileName}");
+            string fileName = await _fileService.Add(file);
+            var url = Url.Content($"http://localhost:5243/Files/{fileName}");
             return Ok(new { Url = url });
         }
         catch (Exception ex)
@@ -43,11 +41,11 @@ public class UploadController : ControllerBase
     {
         try
         {
-            var filePath = await _fileService.Add(file);
+            string fileName = await _fileService.Add(file);
             var newFile = new FileDto()
             {
-                FileName = file.FileName,
-                FileUrl = Url.Content($"http://localhost:5243/Files/{file.FileName}"),
+                FileName = fileName,
+                FileUrl = Url.Content($"http://localhost:5243/Files/{fileName}"),
                 Id = Guid.NewGuid()
             };
             _appDbContext.Files.Add(_mapper.Map<Persistance.Entities.File>(newFile));
