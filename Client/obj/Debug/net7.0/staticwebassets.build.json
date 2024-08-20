@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r+eR+c3Z+7AkiwJ9h7l3ShyLl2FV0ckH+1tyeKJbuR8=",
+  "Hash": "YbcYy5uex5iNO0+aqnimbEY5I0GUjjhpBdrQgaoXr4g=",
   "Source": "CMVMD.Client",
   "BasePath": "/",
   "Mode": "Root",
@@ -9194,12 +9194,12 @@
       "OriginalItemSpec": "wwwroot/css/open-iconic/README.md"
     },
     {
-      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/favicon.png",
+      "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/favicon.ico",
       "SourceId": "CMVMD.Client",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "favicon.png",
+      "RelativePath": "favicon.ico",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -9210,7 +9210,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/favicon.png"
+      "OriginalItemSpec": "wwwroot/favicon.ico"
     },
     {
       "Identity": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/wwwroot/icon-192.png",
