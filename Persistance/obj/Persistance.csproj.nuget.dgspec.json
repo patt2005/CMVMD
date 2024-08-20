@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj": {}
+    "/Users/victor/CMVMD/Persistance/Persistance.csproj": {}
   },
   "projects": {
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj": {
+    "/Users/victor/CMVMD/Persistance/Persistance.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj",
+        "projectUniqueName": "/Users/victor/CMVMD/Persistance/Persistance.csproj",
         "projectName": "Persistance",
-        "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj",
-        "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-        "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/",
+        "projectPath": "/Users/victor/CMVMD/Persistance/Persistance.csproj",
+        "packagesPath": "/Users/victor/.nuget/packages/",
+        "outputPath": "/Users/victor/CMVMD/Persistance/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
+          "/Users/victor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net7.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net7.0": {
-            "targetAlias": "net7.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -40,22 +40,22 @@
         }
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.17, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.17, )"
+              "version": "[8.0.8, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[8.0.4, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
               "target": "Package",
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

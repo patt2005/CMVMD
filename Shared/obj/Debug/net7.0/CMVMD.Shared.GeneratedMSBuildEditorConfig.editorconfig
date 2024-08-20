@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows,browser
 build_property.RootNamespace = CMVMD.Shared
-build_property.ProjectDir = /Users/petrugrigor/Documents/VetSite/CMVMD/Shared/
+build_property.ProjectDir = /Users/victor/CMVMD/Shared/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
