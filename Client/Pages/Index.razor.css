@@ -1,106 +1,214 @@
+/* Desktop view adjustments */
+@media (min-width: 769px) {
+    .mobile-container {
+        display: none;
+        /* Hide article container on desktop */
+    }
+
+    #articlesCarousel {
+        display: block;
+        /* Show carousel on desktop */
+    }
+
+    #eventCarousel {
+        display: block;
+    }
+
+    #imagesCarousel {
+        display: block;
+    }
+
+    #partnersCarousel {
+        display: block;
+    }
+
+    .carousel-card-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .carousel-card {
+        flex: 1;
+        margin: 0 10px;
+        max-width: calc(100% / 3 - 20px);
+        /* Adjust for spacing between cards */
+        box-sizing: border-box;
+    }
+
+    .custom-card {
+        height: 300px;
+        /* Reduced height for desktop */
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        /* Larger font size for title */
+    }
+
+    .card-text {
+        font-size: 1.125rem;
+        /* Larger font size for subtitle */
+    }
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    .mobile-container {
+        display: block;
+        width: 100%;
+        /* Ensure the container takes full width */
+    }
+
+    #articlesCarousel,
+    #eventCarousel,
+    #imagesCarousel,
+    #partnersCarousel {
+        display: none;
+        /* Hide carousels on mobile */
+    }
+
+    .carousel {
+        display: flex;
+        width: 100%;
+        /* Ensure the carousel width fits the screen */
+        overflow: hidden;
+        /* Hide overflowing content */
+    }
+
+    .carousel-inner {
+        display: flex;
+        width: 100%;
+        /* Ensure the inner carousel fits the container */
+    }
+
+    .carousel-item {
+        flex: 0 0 auto;
+        width: 100%;
+        /* Each item should take full width of the carousel */
+        padding: 0 5px;
+        /* Space between items */
+    }
+
+    .carousel-card {
+        flex: 0 0 auto;
+        width: 90%;
+        /* Adjust card width to fit within carousel */
+        margin: 0 5px;
+        /* Space between cards */
+    }
+
+    .custom-card {
+        height: auto;
+        /* Let the card height adjust based on content */
+    }
+
+    .carousel-image {
+        width: 100%;
+        /* Ensure images fit within the card */
+        max-width: 100%;
+        /* Ensure image does not exceed card width */
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+    }
+}
+
+/* Common card styles */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    /* Adjust height as needed */
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Subtitle color and title line clamp */
+.card-text {
+    color: black;
+    /* Change subtitle color to black */
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+    line-height: 1.2em;
+    max-height: 2.4em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2em;
+    max-height: 2.4em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Style the carousel control buttons */
 .carousel-control-prev,
 .carousel-control-next {
     width: 50px;
-    /* Set a fixed width */
     height: 50px;
-    /* Set a fixed height */
     border-radius: 50%;
-    /* Make the buttons circular */
     background-color: black;
-    /* Background color of the button */
     opacity: 0.7;
-    /* Optional: Adjust opacity for visual effect */
     border: none;
-    /* Remove default border */
     position: absolute;
-    /* Position buttons absolutely within the carousel */
     top: 50%;
-    /* Center vertically */
     transform: translateY(-50%);
-    /* Adjust for exact vertical center */
     z-index: 10;
-    /* Ensure buttons are above other content */
 }
 
-/* Style the previous button */
 .carousel-control-prev {
     left: 20px;
-    /* Add horizontal padding from the left edge */
 }
 
-/* Style the next button */
 .carousel-control-next {
     right: 20px;
-    /* Add horizontal padding from the right edge */
 }
 
-.card {
-    border: 1px solid #ddd;
-    /* Optional: Add a border around the cards */
-    border-radius: 8px;
-    /* Optional: Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Optional: Shadow effect */
-}
-
-.card-img-top {
-    height: 200px;
-    /* Set a fixed height for images */
-    object-fit: cover;
-    /* Ensure images cover the area without distortion */
-}
-
-.card-body {
-    padding: 1rem;
-    /* Adjust padding inside the card */
-}
-
-.card-title {
-    font-size: 1.25rem;
-    /* Adjust title font size */
-    margin-bottom: 0.5rem;
-    /* Add some space below the title */
-}
-
-.center-container {
-    display: flex;
-    /* Enable Flexbox */
-    justify-content: center;
-    /* Center horizontally */
-    margin: 2%;
-    /* Remove default margin */
-    padding: 0;
-    /* Remove default padding */
-}
-
-.card-text {
-    font-size: 0.875rem;
-    /* Adjust description font size */
-    color: #555;
-    /* Optional: Change text color */
-}
-
-/* Style the icons inside the buttons */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: black;
-    /* Set background color of icons */
     width: 20px;
-    /* Adjust width of icons */
     height: 20px;
-    /* Adjust height of icons */
     background-size: 100% 100%;
-    /* Ensure icons fit within the button */
 }
 
-/* Optional: Change arrow color or adjust positioning */
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {
     color: white;
-    /* Change arrow color */
     font-size: 20px;
-    /* Adjust arrow size */
     line-height: 50px;
-    /* Center the arrow vertically */
 }

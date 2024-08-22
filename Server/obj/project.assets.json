@@ -8313,19 +8313,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/victor/.nuget/packages/": {}
+    "/Users/petrugrigor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/victor/CMVMD/Server/CMVMD.Server.csproj",
+      "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj",
       "projectName": "CMVMD.Server",
-      "projectPath": "/Users/victor/CMVMD/Server/CMVMD.Server.csproj",
-      "packagesPath": "/Users/victor/.nuget/packages/",
-      "outputPath": "/Users/victor/CMVMD/Server/obj/",
+      "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj",
+      "packagesPath": "/Users/petrugrigor/.nuget/packages/",
+      "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/victor/.nuget/NuGet/NuGet.Config"
+        "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -8337,14 +8337,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/victor/CMVMD/Client/CMVMD.Client.csproj": {
-              "projectPath": "/Users/victor/CMVMD/Client/CMVMD.Client.csproj"
+            "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj": {
+              "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj"
             },
-            "/Users/victor/CMVMD/Persistance/Persistance.csproj": {
-              "projectPath": "/Users/victor/CMVMD/Persistance/Persistance.csproj"
+            "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj": {
+              "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj"
             },
-            "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj": {
-              "projectPath": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj"
+            "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj": {
+              "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj"
             }
           }
         }
@@ -8402,7 +8402,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

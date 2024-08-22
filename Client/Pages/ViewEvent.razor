@@ -1,50 +1,57 @@
 @page "/eveniment/{EventId}"
-@using CMVMD.Client.Services
-@using CMVMD.Shared.Models
-@inject IEventService _eventService
+@inject IEventService _evnetService
 @inject NavigationManager Navigation
 
-@if (eventDto != null)
+@using CMVMD.Client.Services
+@using CMVMD.Client.Services.Article
+@using CMVMD.Shared.Models
+
+@if (eventObj != null)
 {
-    <div style="padding: 2rem;">
-    <RadzenCard Style="background-color: #f4f4f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 10px;">
-        <RadzenImage Path="@eventDto.File!.FileUrl" Style="width: 50%; height: auto; border-radius: 10px;"
-            AlternateText="Event Image" />
+    <div class="content-container">
+    @if (eventObj.File != null)
+        {
+            <img src="@eventObj.File.FileUrl" class="article-image" alt="Article Image" />
+        }
 
-        <div style="padding: 1rem 0;">
-            <RadzenText TextStyle="TextStyle.H3" FontWeight="600">@eventDto.Title</RadzenText>
-            <RadzenText TextStyle="TextStyle.H5" FontWeight="400" Color="#6c757d">@eventDto.SubTitle</RadzenText>
-            <RadzenText TextStyle="TextStyle.Body1" Color="#007bff">@eventDto.StartDate.ToString("MMMM dd, yyyy HH:mm")
-            </RadzenText>
-        </div>
+        <RadzenText TextStyle="TextStyle.H4" FontWeight="700" style="margin-top: 2rem; margin-bottom: 1rem;"
+            Color="#333333">
+            @eventObj.Title
+        </RadzenText>
 
-        <div style="padding-top: 10px;">
+        <RadzenText TextStyle="TextStyle.H5" FontWeight="400" Color="#6c757d" class="subtitle">
+            @eventObj.SubTitle
+        </RadzenText>
+
+        <div class="article-text">
             <RadzenText TextStyle="TextStyle.Body1" FontWeight="400" Color="#212529">
-                @((MarkupString)eventDto.Text)
+                @((MarkupString)eventObj.Text)
             </RadzenText>
         </div>
 
-        <div style="text-align: right; padding-top: 1rem;">
+        <div class="back-button">
             <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
                 Click="@(args => Navigation.NavigateTo("/"))" />
         </div>
-    </RadzenCard>
-</div>
+    </div>
 }
 else
 {
+    <div class="container">
     <RadzenCard>
-    <RadzenText Text="Loading..." />
-</RadzenCard>
+        <RadzenText Text="Loading..." />
+    </RadzenCard>
+</div>
 }
 
 @code {
     [Parameter]
     public string EventId { get; set; } = default!;
-    private EventDto? eventDto;
+
+    private EventDto? eventObj { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        eventDto = await _eventService.GetByIdAsync(EventId);
+        eventObj = await _evnetService.GetByIdAsync(EventId);
     }
 }

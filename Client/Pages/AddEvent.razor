@@ -10,7 +10,7 @@
 <div style="padding-left: 10%; padding-right: 10%;">
     <RadzenTemplateForm TItem="EventDto" Data=@eventDto Submit=@SaveEvent>
         <RadzenStack Gap="1rem" class="rz-p-sm-12">
-            <RadzenText style="padding-top: 4%; padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
+            <RadzenText style="padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
                 <strong>Adaugă un eveniment</strong>
             </RadzenText>
             <RadzenLabel Text="Selectează Data" Component="RadzenDatePickerBindValue" />
@@ -31,8 +31,6 @@
                 </ChildContent>
                 <Helper>
                     <RadzenRequiredValidator Component="Title" Text="Evenimentul trebuie sa aibă un nume." />
-                    <RadzenLengthValidator Component="Title" Min="50"
-                        Text="Titlul trebuie să aibă cel puțin 50 de caractere." />
                 </Helper>
             </RadzenFormField>
             <RadzenFormField Text="Subtitlu">
@@ -41,8 +39,6 @@
                 </ChildContent>
                 <Helper>
                     <RadzenRequiredValidator Component="SubTitle" Text="Evenimentul trebuie sa aibă o descriere." />
-                    <RadzenLengthValidator Component="SubTitle" Min="100"
-                        Text="Subtitlul trebuie să aibă cel puțin 100 de caractere." />
                 </Helper>
             </RadzenFormField>
             <RadzenFormField Text="Text">

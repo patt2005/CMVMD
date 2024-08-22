@@ -9,82 +9,88 @@
 
 <PageTitle>Acasă</PageTitle>
 
-<style>
-    .truncate-text {
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
-    }
-</style>
-
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+<div id="imagesCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5000">
-            <RadzenImage Path="images/image1.jpeg" AlternateText="community"
+            <RadzenImage Path="Images/image1.jpeg" AlternateText="community"
                 style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-            <RadzenImage Path="images/image3.jpg" AlternateText="community"
+            <RadzenImage Path="Images/image3.jpg" AlternateText="community"
                 style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-            <RadzenImage Path="images/image2.jpg" AlternateText="community"
+            <RadzenImage Path="Images/image2.jpg" AlternateText="community"
                 style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
         </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#imagesCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
-        data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#imagesCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
 </div>
 
-<RadzenText style="padding-top: 4%; padding-bottom: 3%; align-items: center;" class="text-center"
+<div class="mobile-container">
+    <img src="Images/image1.jpeg" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
+</div>
+
+<RadzenText style="padding-top: 2rem; padding-bottom: 1.5rem; align-items: center;" class="text-center"
     TextStyle="TextStyle.H4"><strong>Articole
         recent publicate</strong></RadzenText>
 
-<div id="articlesCarousel" class="carousel slide" data-bs-ride="false">
+<div class="mobile-container d-block d-md-none">
+    @foreach (ArticleDto article in articles.Take(3))
+    {
+        <div class="card custom-card" style="margin-bottom: 2rem;">
+            <a href="/articol/@article.Id" style="text-decoration: none;">
+                <img src="@article.File!.FileUrl" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <h5 class="card-title">@article.Title</h5>
+                    <p class="card-text">@article.SubTitle</p>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+<div id="articlesCarousel" class="carousel slide d-none d-md-block" data-bs-ride="false">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <div class="d-flex">
+            <div class="carousel-card-container">
                 @foreach (ArticleDto article in articles.Take(3).ToList())
                 {
-                    <div class="px-2 col-md-4 mb-4">
-                        <a href="/articol/@article.Id" style="text-decoration: none;">
-                            <div class="card">
-                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Image 1">
+                    <div class="carousel-card">
+                        <div class="card custom-card">
+                            <a href="/articol/@article.Id" style="text-decoration: none;">
+                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Article Image">
                                 <div class="card-body">
                                     <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text truncate-text">@article.SubTitle</p>
+                                    <p class="card-text">@article.SubTitle</p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 }
             </div>
         </div>
         <div class="carousel-item">
-            <div class="d-flex">
+            <div class="carousel-card-container">
                 @foreach (ArticleDto article in articles.Skip(3).Take(3).ToList())
                 {
-                    <div class="px-2 col-md-4 mb-4">
-                        <a href="/articol/@article.Id" style="text-decoration: none;">
-                            <div class="card">
-                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Image 1">
+                    <div class="carousel-card">
+                        <div class="card custom-card">
+                            <a href="/articol/@article.Id" style="text-decoration: none;">
+                                <img src="@article.File!.FileUrl" class="card-img-top" alt="Article Image">
                                 <div class="card-body">
                                     <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text truncate-text">@article.SubTitle</p>
+                                    <p class="card-text">@article.SubTitle</p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 }
             </div>
@@ -100,48 +106,63 @@
     </button>
 </div>
 
-<div class="center-container">
+<div class="text-center" style="margin-top: 2rem">
     <RadzenButton Variant="Variant.Flat" Click="NaviateToArticles" Text="Mai multe articole"
         Style="font-size: x-large; padding: 20px; border-radius: 15px;" ButtonStyle="ButtonStyle.Primary" />
 </div>
 
-<RadzenText style="padding-top: 2%; padding-bottom: 3%; align-items: center;" class="text-center"
+<RadzenText style="padding-top: 2rem; padding-bottom: 1.5rem; align-items: center;" class="text-center"
     TextStyle="TextStyle.H4"><strong>Evenimente curente</strong></RadzenText>
 
-<div id="eventCarousel" class="carousel slide" data-bs-ride="false">
+<div class="mobile-container d-block d-md-none">
+    @foreach (EventDto eventDto in events.Take(3))
+    {
+        <div class="card custom-card" style="margin-bottom: 2rem;">
+            <a href="/articol/@eventDto.Id" style="text-decoration: none;">
+                <img src="@eventDto.File!.FileUrl" class="card-img-top" alt="Article Image">
+                <div class="card-body">
+                    <h5 class="card-title">@eventDto.Title</h5>
+                    <p class="card-text">@eventDto.SubTitle</p>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+<div id="eventCarousel" class="carousel slide d-none d-md-block" data-bs-ride="false">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <div class="d-flex">
-                @foreach (EventDto eventObj in events.Take(3).ToList())
+            <div class="carousel-card-container">
+                @foreach (EventDto eventDto in events.Take(3).ToList())
                 {
-                    <div class="px-2 col-md-4 mb-4">
-                        <a href="/eveniment/@eventObj.Id" style="text-decoration: none;">
-                            <div class="card">
-                                <img src="@eventObj.File!.FileUrl" class="card-img-top" alt="Image 1">
+                    <div class="carousel-card">
+                        <div class="card custom-card">
+                            <a href="/eveniment/@eventDto.Id" style="text-decoration: none;">
+                                <img src="@eventDto.File!.FileUrl" class="card-img-top" alt="Article Image">
                                 <div class="card-body">
-                                    <h5 class="card-title">@eventObj.Title</h5>
-                                    <p class="card-text truncate-text">@eventObj.SubTitle</p>
+                                    <h5 class="card-title">@eventDto.Title</h5>
+                                    <p class="card-text">@eventDto.SubTitle</p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 }
             </div>
         </div>
         <div class="carousel-item">
-            <div class="d-flex">
-                @foreach (EventDto eventObj in events.Take(3).ToList())
+            <div class="carousel-card-container">
+                @foreach (EventDto eventDto in events.Skip(3).Take(3).ToList())
                 {
-                    <div class="px-2 col-md-4 mb-4">
-                        <a href="/articol/@eventObj.Id" style="text-decoration: none;">
-                            <div class="card">
-                                <img src="@eventObj.File!.FileUrl" class="card-img-top" alt="Image 1">
+                    <div class="carousel-card">
+                        <div class="card custom-card">
+                            <a href="/eveniment/@eventDto.Id" style="text-decoration: none;">
+                                <img src="@eventDto.File!.FileUrl" class="card-img-top" alt="Article Image">
                                 <div class="card-body">
-                                    <h5 class="card-title">@eventObj.Title</h5>
-                                    <p class="card-text truncate-text">@eventObj.SubTitle</p>
+                                    <h5 class="card-title">@eventDto.Title</h5>
+                                    <p class="card-text">@eventDto.SubTitle</p>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 }
             </div>
@@ -157,77 +178,161 @@
     </button>
 </div>
 
-<div class="center-container">
+<div class="text-center" style="margin-top: 2rem;">
     <RadzenButton Variant="Variant.Flat" Click="NavigateToCalendar" Text="Calendarul evenimentelor"
         Style="font-size: x-large; padding: 20px; border-radius: 15px;" ButtonStyle="ButtonStyle.Primary" />
 </div>
 
-<RadzenText style="padding-top: 2%; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
+<RadzenText style="padding-top: 2rem; padding-bottom: 1.5rem; align-items: center;" class="text-center"
+    TextStyle="TextStyle.H4">
     <strong>Parteneri</strong>
 </RadzenText>
 
-<div id="partnersCarousel" class="carousel slide" data-bs-ride="false" style="padding-top: 2%;">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <div class="d-flex">
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/35db47102f20e165a7d6be19aefb8b46dd021510-513x509.jpg"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Agenția Națională pentru Siguranța<br>Alimentelor</h5>
+<div class="mobile-container" style="max-width: 100%;">
+    <div id="mobilePartners" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex flex-nowrap overflow-auto">
+                    <div class="carousel-card" style="flex: 0 0 auto; width: 60%; margin-right: 5px;">
+                        <div class="card custom-card">
+                            <a href="https://www.ansa.gov.md/" style="text-decoration: none;">
+                                <img src="https://cdn.sanity.io/images/cys4a6ni/production/35db47102f20e165a7d6be19aefb8b46dd021510-513x509.jpg"
+                                    class="d-block w-100" style="object-fit: contain; height: 150px;" alt="Image 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Agenția Națională pentru Siguranța<br>Alimentelor</h5>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/017c8976a73672942bf40b1ada28e80809224ad7-300x250.jpg"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Universitatea Tehnică a<br>Moldovei</h5>
+                    <div class="carousel-card" style="flex: 0 0 auto; width: 60%; margin-right: 5px;">
+                        <div class="card custom-card">
+                            <a href="https://amvac.ro/" style="text-decoration: none;">
+                                <img src="https://cdn.sanity.io/images/cys4a6ni/production/03dd3aeeab7294dda82d638caf62b7d97854ea86-520x371.jpg"
+                                    class="d-block w-100" style="object-fit: contain; height: 150px;" alt="Image 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Asociația Medicilor Veterinari pentru Animale de<br>Companie
+                                        din România</h5>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Ministerul Agriculturi şi Industriei<br>Alimentelor</h5>
+                    <div class="carousel-card" style="flex: 0 0 auto; width: 60%; margin-right: 5px;">
+                        <div class="card custom-card">
+                            <a href="https://fmv.utm.md/" style="text-decoration: none;">
+                                <img src="https://cdn.sanity.io/images/cys4a6ni/production/2577c7a8a4e738bedef5f21bfe94256a4f1ed6fc-300x300.png"
+                                    class="d-block w-100" style="object-fit: contain; height: 150px;" alt="Image 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">Facultatea Medicină Veterinară a Universității<br>Tehnice a
+                                        Moldovei</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-card" style="flex: 0 0 auto; width: 60%; margin-right: 5px;">
+                        <div class="card custom-card">
+                            <a href="https://maia.gov.md/" style="text-decoration: none;">
+                                <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
+                                    class="d-block w-100" style="object-fit: contain; height: 150px;" alt="Image 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ministerul Agriculturi şi Industriei Alimentelor</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel-card" style="flex: 0 0 auto; width: 60%; margin-right: 5px;">
+                        <div class="card custom-card">
+                            <a href="https://utm.md/" style="text-decoration: none;">
+                                <img src="https://cdn.sanity.io/images/cys4a6ni/production/017c8976a73672942bf40b1ada28e80809224ad7-300x250.jpg"
+                                    class="d-block w-100" style="object-fit: contain; height: 150px;" alt="Image 5">
+                                <div class="card-body">
+                                    <h5 class="card-title">Universitatea Tehnică a Moldovei</h5>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div id="partnersCarousel" class="carousel slide" data-bs-ride="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="d-flex" style="width: 100%;">
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a style="text-decoration: none;" href="https://www.ansa.gov.md/">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/35db47102f20e165a7d6be19aefb8b46dd021510-513x509.jpg"
+                                style="object-fit: contain; height: 200px; width: 100%;" alt="Image 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Agenția Națională pentru Siguranța<br>Alimentelor</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a href="https://amvac.ro/" style="text-decoration: none;">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/03dd3aeeab7294dda82d638caf62b7d97854ea86-520x371.jpg"
+                                alt="Image 3" style="object-fit: contain; height: 200px; width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">Asociația Medicilor Veterinari pentru Animale de<br>Companie
+                                    din
+                                    România
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a style="text-decoration: none;" href="https://fmv.utm.md/">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/2577c7a8a4e738bedef5f21bfe94256a4f1ed6fc-300x300.png"
+                                style="object-fit: contain; height: 200px; width: 100%;" alt="Image 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Facultatea Medicină Veterinară a Universității<br>Tehnice a
+                                    Moldovei
+                                </h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="carousel-item">
-            <div class="d-flex">
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/2577c7a8a4e738bedef5f21bfe94256a4f1ed6fc-300x300.png"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Facultatea Medicină Veterinară a Universității Tehnice a Moldovei
-                            </h5>
-                        </div>
+            <div class="d-flex" style="width: 100%;">
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a href="https://maia.gov.md/" style="text-decoration: none;">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
+                                style="object-fit: contain; height: 200px; width: 100%;" alt="Image 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Ministerul Agriculturi şi Industriei Alimentelor</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/03dd3aeeab7294dda82d638caf62b7d97854ea86-520x371.jpg"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Asociația Medicilor Veterinari pentru Animale de Companie din România
-                            </h5>
-                        </div>
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a style="text-decoration: none;" href="https://utm.md/">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/017c8976a73672942bf40b1ada28e80809224ad7-300x250.jpg"
+                                style="object-fit: contain; height: 200px; width: 100%;" alt="Image 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Universitatea Tehnică a Moldovei</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="px-2 col-md-4 mb-4">
-                    <div class="card">
-                        <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
-                            class="card-img-top" style="object-fit: contain" alt="Image 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Ministerul Agriculturi şi Industriei<br>Alimentelor</h5>
-                        </div>
+                <div class="carousel-card" style="flex: 1;">
+                    <div class="card custom-card" style="width: 100%;">
+                        <a href="https://maia.gov.md/" style="text-decoration: none;">
+                            <img src="https://cdn.sanity.io/images/cys4a6ni/production/c0513b1cd16f9d0e6107ca66118f54660e006824-387x130.png"
+                                alt="Image 3" style="object-fit: contain; height: 200px; width: 100%;">
+                            <div class="card-body">
+                                <h5 class="card-title">Ministerul Agriculturi şi Industriei<br>Alimentelor</h5>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

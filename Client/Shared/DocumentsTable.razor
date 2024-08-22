@@ -6,9 +6,10 @@
 @inject IJSRuntime JSRuntime
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
-    FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true"
+    FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="20" AllowPaging="true"
     PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@Documents" ColumnWidth="300px"
-    LogicalFilterOperator="LogicalFilterOperator.Or">
+    LogicalFilterOperator="LogicalFilterOperator.Or" style="height: 70vh;"
+    EmptyText="Nu există documente în tabel încă.">
     <Columns>
         <RadzenDataGridColumn Property="@nameof(DocumentDto.Name)" Title="Denumirea" Width="65px" />
         <RadzenDataGridColumn Property="@nameof(DocumentDto.Description)" Title="Descrierea" Width="160px" />

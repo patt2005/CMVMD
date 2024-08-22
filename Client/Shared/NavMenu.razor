@@ -1,35 +1,56 @@
-﻿<RadzenHeader>
+﻿<style>
+    .rz-panel-menu-item {
+        font-size: 0.875rem;
+        /* Adjust the font size as needed */
+        font-weight: normal;
+        /* Remove bold styling */
+    }
+</style>
+
+<RadzenHeader>
     <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
         <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
-        <RadzenText class="pt-2" TextStyle=" TextStyle.H3" style='color:rgba(58,136,244,255)'>
+        <RadzenText class="pt-2" TextStyle="TextStyle.H3" style="color:rgba(58,136,244,255)">
             <strong>CMV.md</strong>
         </RadzenText>
     </RadzenStack>
 </RadzenHeader>
+
 <RadzenSidebar Responsive="false" @bind-Expanded="@sidebarExpanded" style="position: absolute;">
     <RadzenPanelMenu>
-        <RadzenPanelMenuItem Text="Acasă" Icon="home" Path="/" Click="HideSideBar" />
-        <RadzenPanelMenuItem Text="Despre CMV" Icon="info">
-            <RadzenPanelMenuItem Text="Prezentarea Generală" Click="HideSideBar" Path="/general" />
-            <RadzenPanelMenuItem Text="Biroul Executiv" Click="HideSideBar" Path="/executiv" />
-            <RadzenPanelMenuItem Text="Comisia de Dentologie şi Litigii" Click="HideSideBar" Path="/comisia" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Acasă" Icon="home" Path="/" Click="HideSideBar" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Despre CMV" Icon="info">
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Prezentarea Generală" Click="HideSideBar"
+                Path="/general" />
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Biroul Executiv" Click="HideSideBar"
+                Path="/executiv" />
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Comisia de Dentologie şi Litigii" Click="HideSideBar"
+                Path="/comisia" />
         </RadzenPanelMenuItem>
-        <RadzenPanelMenuItem Text="Legislaţie" Icon="gavel" Path="/legislatie" Click="HideSideBar" />
-        <RadzenPanelMenuItem Text="Lista medecilor veterinari" Icon="clinical_notes" Click="HideSideBar"
-            Path="/lista/veterinarilor" />
-        <RadzenPanelMenuItem Text="Formarea profesională continuă" Icon="school">
-            <RadzenPanelMenuItem Text="Componența Comisiei" Click="HideSideBar" Path="/componenta" />
-            <RadzenPanelMenuItem Text="Documente" Click="HideSideBar" Path="/formare/documente" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Legislaţie" Icon="gavel" Path="/legislatie"
+            Click="HideSideBar" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Lista medecilor veterinari" Icon="clinical_notes"
+            Click="HideSideBar" Path="/lista/veterinarilor" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Formarea profesională continuă" Icon="school">
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Componența Comisiei" Click="HideSideBar"
+                Path="/componenta" />
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Documente" Click="HideSideBar"
+                Path="/formare/documente" />
         </RadzenPanelMenuItem>
-        <RadzenPanelMenuItem Text="Articole" Icon="article" Click="HideSideBar" Path="/articole" />
-        <RadzenPanelMenuItem Text="Evenimente" Icon="event" Click="HideSideBar" Path="/calendar" />
-        <RadzenPanelMenuItem Text="Adaugă un articol" Icon="post_add" Click="HideSideBar" Path="/editeaza" />
-        <RadzenPanelMenuItem Text="Adaugă un document" Icon="upload_file">
-            <RadzenPanelMenuItem Text="Legislaţie" Click="HideSideBar" Path="/legislatie/adauga" />
-            <RadzenPanelMenuItem Text="Formarea profesională continuă" Click="HideSideBar" Path="/formare/adauga" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Articole" Icon="article" Click="HideSideBar"
+            Path="/articole" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Evenimente" Icon="event" Click="HideSideBar"
+            Path="/calendar" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un articol" Icon="post_add" Click="HideSideBar"
+            Path="/editeaza" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un document" Icon="upload_file">
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Legislaţie" Click="HideSideBar"
+                Path="/legislatie/adauga" />
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Formarea profesională continuă" Click="HideSideBar"
+                Path="/formare/adauga" />
         </RadzenPanelMenuItem>
-        <RadzenPanelMenuItem Text="Adaugă un eveniment" Icon="calendar_add_on" Click="HideSideBar"
-            Path="/eveniment/adauga" />
+        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un eveniment" Icon="calendar_add_on"
+            Click="HideSideBar" Path="/eveniment/adauga" />
     </RadzenPanelMenu>
 </RadzenSidebar>
 

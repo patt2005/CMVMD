@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "/Users/victor/.nuget/packages/": {}
+    "/Users/petrugrigor/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj",
+      "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj",
       "projectName": "CMVMD.Shared",
-      "projectPath": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj",
-      "packagesPath": "/Users/victor/.nuget/packages/",
-      "outputPath": "/Users/victor/CMVMD/Shared/obj/",
+      "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj",
+      "packagesPath": "/Users/petrugrigor/.nuget/packages/",
+      "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/victor/.nuget/NuGet/NuGet.Config"
+        "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.400/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,16 @@
+/* Default styles for desktop */
+.page-container {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+/* Override styles for mobile */
+@media (max-width: 768px) {
+    .page-container {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 1rem;
+        /* Optional: Add padding to the top or bottom if needed */
+        padding-bottom: 1rem;
+    }
+}

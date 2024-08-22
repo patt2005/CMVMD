@@ -5,79 +5,8 @@
 
 <PageTitle>Articole</PageTitle>
 
-<style>
-    .article-container {
-        padding: 0 5%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .page-header {
-        padding: 2rem 0;
-        text-align: center;
-    }
-
-    .page-header .title {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 1rem;
-    }
-
-    .article-card {
-        background-color: #ffffff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .card-img-top {
-        width: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .card-body {
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 0.5rem;
-    }
-
-    .card-subtitle {
-        font-size: 1.125rem;
-        color: #555;
-        margin-bottom: 1rem;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 4px;
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-        display: inline-block;
-    }
-
-    .btn-primary:hover {
-        background-color: #0056b3;
-    }
-</style>
-
 <div class="page-header">
-    <RadzenText style="padding-bottom: 1%; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
+    <RadzenText style="padding-bottom: 2rem; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
         <strong>Articole</strong>
     </RadzenText>
 </div>
@@ -88,8 +17,8 @@
         <div class="article-card">
             <img src="@article.File?.FileUrl" class="card-img-top" alt="Article Image" />
             <div class="card-body">
-                <h5 class="card-title">@article.Title</h5>
-                <p class="card-subtitle">@article.SubTitle</p>
+                <h5 class="card-title truncate-2-lines">@article.Title</h5>
+                <p class="card-subtitle truncate-2-lines">@article.SubTitle</p>
                 <a href="/articol/@article.Id" class="btn-primary">Citește</a>
             </div>
         </div>
