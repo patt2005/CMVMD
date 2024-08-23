@@ -10,7 +10,7 @@
     <strong>Legislație</strong>
 </RadzenText>
 
-<DocumentsTable Documents="@documents"></DocumentsTable>
+<DocumentsTable Documents="@documents" IsLegislationDocument=true></DocumentsTable>
 
 @code {
     IEnumerable<DocumentDto> documents = Enumerable.Empty<DocumentDto>();

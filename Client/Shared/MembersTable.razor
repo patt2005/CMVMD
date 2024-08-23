@@ -1,18 +1,73 @@
+@using CMVMD.Client.Services
+@using CMVMD.Client.Services.Member
+@using CMVMD.Shared.Data
 @using CMVMD.Shared.Models
+@inject IMemberService _memberService
+@inject NavigationManager Navigation
+
+<div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+    <RadzenButton Click=@(args => NavigateToAddMemberPage()) Text="Adaugă" ButtonStyle="ButtonStyle.Info" Icon="add" />
+</div>
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true"
-    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@ExecutiveMembers" ColumnWidth="300px"
+    PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@executiveMembers" ColumnWidth="300px"
     LogicalFilterOperator="LogicalFilterOperator.Or" style="height: 70vh;" EmptyText="Nu există membri in tabel încă.">
     <Columns>
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.FirstName)" Title="Nume" Width="160px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.LastName)" Title="Prenume" Width="160px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.JobTitle)" Title="Funcția" Width="400px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.Contacts)" Title="Contacte" Width="200px" />
+        <RadzenDataGridColumn Title="Acțiuni" Width="100px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
+                    Click="@(args => DeleteMember(@data.Id))" />
+            </Template>
+        </RadzenDataGridColumn>
     </Columns>
 </RadzenDataGrid>
 
 @code {
     [Parameter]
-    public IEnumerable<ExecutiveMemberDto> ExecutiveMembers { get; set; } = default!;
+    public MemberType ExecutiveMemberType { get; set; } = default!;
+    private IEnumerable<ExecutiveMemberDto> executiveMembers = Enumerable.Empty<ExecutiveMemberDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        switch (ExecutiveMemberType)
+        {
+            case MemberType.ComisionComponentMember:
+                executiveMembers = await _memberService.GetComisionComponentMembers();
+                break;
+            case MemberType.ExecutiveOfficeMember:
+                executiveMembers = await _memberService.GetExecutiveOfficeMembers();
+                break;
+            case MemberType.DentistryComisionMember:
+                executiveMembers = await _memberService.GetDentistryComisionMembers();
+                break;
+        }
+    }
+
+    private void NavigateToAddMemberPage()
+    {
+        Navigation.NavigateTo($"/membru/adauga/{(int)ExecutiveMemberType}");
+    }
+
+    private async Task DeleteMember(Guid guidId)
+    {
+        string id = guidId.ToString();
+        switch (ExecutiveMemberType)
+        {
+            case MemberType.ComisionComponentMember:
+                await _memberService.DeleteComisionComponentMemberById(id);
+                break;
+            case MemberType.ExecutiveOfficeMember:
+                await _memberService.DeleteExecutiveOfficeMemberById(id);
+                break;
+            case MemberType.DentistryComisionMember:
+                await _memberService.DeleteDentistryComisionMemberById(id);
+                break;
+        }
+        Navigation.NavigateTo("/");
+    }
 }

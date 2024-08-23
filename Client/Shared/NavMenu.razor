@@ -1,9 +1,7 @@
 ﻿<style>
     .rz-panel-menu-item {
         font-size: 0.875rem;
-        /* Adjust the font size as needed */
         font-weight: normal;
-        /* Remove bold styling */
     }
 </style>
 
@@ -42,15 +40,15 @@
         <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Evenimente" Icon="event" Click="HideSideBar"
             Path="/calendar" />
         <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un articol" Icon="post_add" Click="HideSideBar"
-            Path="/editeaza" />
+            Path="/articol/editeaza" />
         <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un document" Icon="upload_file">
             <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Legislaţie" Click="HideSideBar"
-                Path="/legislatie/adauga" />
+                Path="/documente/legislatie/editeaza" />
             <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Formarea profesională continuă" Click="HideSideBar"
-                Path="/formare/adauga" />
+                Path="/documente/formare/editeaza" />
         </RadzenPanelMenuItem>
         <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un eveniment" Icon="calendar_add_on"
-            Click="HideSideBar" Path="/eveniment/adauga" />
+            Click="HideSideBar" Path="/eveniment/editeaza" />
     </RadzenPanelMenu>
 </RadzenSidebar>
 

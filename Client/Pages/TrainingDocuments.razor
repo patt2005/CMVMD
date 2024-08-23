@@ -10,7 +10,7 @@
     <strong>Formarea profesională continuă</strong>
 </RadzenText>
 
-<DocumentsTable Documents="@documents"></DocumentsTable>
+<DocumentsTable Documents="@documents" IsLegislationDocument=false></DocumentsTable>
 
 @code {
     IEnumerable<DocumentDto> documents = Enumerable.Empty<DocumentDto>();

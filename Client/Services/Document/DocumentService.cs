@@ -33,4 +33,36 @@ public class DocumentService : IDocumentService
         var documents = await _httpClient.GetFromJsonAsync<IEnumerable<DocumentDto>>("api/training/getall");
         return documents!;
     }
+
+    public async Task<DocumentDto> GetLegislationDocumentById(string id)
+    {
+        var documentDto = await _httpClient.GetFromJsonAsync<DocumentDto>($"api/legislation/{id}");
+        return documentDto!;
+    }
+
+    public async Task EditLegislationDocument(DocumentDto documentDto)
+    {
+        await _httpClient.PutAsJsonAsync("api/legislation/edit", documentDto);
+    }
+
+    public async Task<DocumentDto> GetTrainingDocumentById(string id)
+    {
+        var documentDto = await _httpClient.GetFromJsonAsync<DocumentDto>($"api/training/{id}");
+        return documentDto!;
+    }
+
+    public async Task EditTrainingDocument(DocumentDto document)
+    {
+        await _httpClient.PutAsJsonAsync("api/training/edit", document);
+    }
+
+    public async Task DeleteLegislationDocumentById(string id)
+    {
+        await _httpClient.DeleteAsync($"api/legislation/delete/{id}");
+    }
+
+    public async Task DeleteTrainingDocumentById(string id)
+    {
+        await _httpClient.DeleteAsync($"api/training/delete/{id}");
+    }
 }

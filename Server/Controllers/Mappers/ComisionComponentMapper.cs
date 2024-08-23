@@ -8,6 +8,6 @@ public class ComisionComponentMapper : Profile
 {
     public ComisionComponentMapper()
     {
-        CreateMap<ComisionComponentMember, ExecutiveMemberDto>();
+        CreateMap<ComisionComponentMember, ExecutiveMemberDto>().ReverseMap();
     }
 }

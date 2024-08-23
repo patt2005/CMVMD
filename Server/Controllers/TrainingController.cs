@@ -37,4 +37,46 @@ public class TrainingController : ControllerBase
         var jsonDocuments = _mapper.Map<IEnumerable<DocumentDto>>(documents);
         return Ok(jsonDocuments);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetTrainingDocumentById(string id)
+    {
+        var documentId = Guid.Parse(id);
+        var document = await _appDbContext.TrainingDocuments.Include(d => d.File).FirstAsync(d => d.Id == documentId);
+        var documentJson = _mapper.Map<DocumentDto>(document);
+        return Ok(documentJson);
+    }
+
+    [HttpPut("edit")]
+    public async Task<IActionResult> EditTrainingDocument(DocumentDto documentJson)
+    {
+        var currentDocument = await _appDbContext.TrainingDocuments.FirstAsync(d => d.Id == documentJson.Id);
+
+        if (currentDocument == null)
+        {
+            return NotFound();
+        }
+
+        _mapper.Map(documentJson, currentDocument);
+
+        _appDbContext.TrainingDocuments.Update(currentDocument);
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteById(string id)
+    {
+        var guidId = Guid.Parse(id);
+        var document = await _appDbContext.TrainingDocuments.FirstAsync(d => d.Id == guidId);
+
+        if (document == null)
+        {
+            return NotFound();
+        }
+        _appDbContext.TrainingDocuments.Remove(document);
+
+        await _appDbContext.SaveChangesAsync();
+        return Ok();
+    }
 }

@@ -1,9 +1,10 @@
 @page "/eveniment/{EventId}"
-@inject IEventService _evnetService
+@inject IEventService _eventService
 @inject NavigationManager Navigation
 
 @using CMVMD.Client.Services
 @using CMVMD.Client.Services.Article
+@using CMVMD.Client.Services.Event
 @using CMVMD.Shared.Models
 
 @if (eventObj != null)
@@ -29,9 +30,14 @@
             </RadzenText>
         </div>
 
-        <div class="back-button">
+        <div class="button-container">
             <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
                 Click="@(args => Navigation.NavigateTo("/"))" />
+
+            <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
+                Click="@(args => NavigateToEditPage())" />
+
+            <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteEvent())" />
         </div>
     </div>
 }
@@ -52,6 +58,17 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        eventObj = await _evnetService.GetByIdAsync(EventId);
+        eventObj = await _eventService.GetByIdAsync(EventId);
+    }
+
+    private void NavigateToEditPage()
+    {
+        Navigation.NavigateTo($"/eveniment/editeaza/{EventId}");
+    }
+
+    private async Task DeleteEvent()
+    {
+        await _eventService.DeleteById(EventId);
+        Navigation.NavigateTo("/evenimente");
     }
 }

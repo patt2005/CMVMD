@@ -1,20 +1,22 @@
 .article-image {
     max-width: 100%;
-    /* Ensures the image doesn't exceed the     's width */
     max-height: 50%;
-    /* Ensures the image doesn't exceed the container's height */
     height: auto;
-    /* Maintains the aspect ratio */
     width: auto;
-    /* Maintains the aspect ratio */
     object-fit: contain;
-    /* Ensures the image scales within its container while maintaining aspect ratio */
     border-radius: 10px;/
 }
 
 .content-container {
     padding-left: 15%;
     padding-right: 15%;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
 }
 
 .subtitle {

@@ -26,16 +26,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddEvent.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkRXZlbnQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddLegislationDocument.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkTGVnaXNsYXRpb25Eb2N1bWVudC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddTrainingDocument.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkVHJhaW5pbmdEb2N1bWVudC5yYXpvcg==
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddMember.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkTWVtYmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ComisionComponent.razor]
@@ -48,6 +40,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditArticle.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdEFydGljbGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditEvent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdEV2ZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditLegislationDocument.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdExlZ2lzbGF0aW9uRG9jdW1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditTrainingDocument.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFRyYWluaW5nRG9jdW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EventCalendar.razor]

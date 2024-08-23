@@ -1,4 +1,4 @@
-@page "/editeaza"
+@page "/articol/editeaza/{ArticleId?}"
 @using CMVMD.Client.Services.Article
 @using CMVMD.Shared.Models
 @using System.Text.Json
@@ -6,56 +6,74 @@
 @inject NavigationManager Navigation
 @inject NotificationService NotificationService
 
-<PageTitle>Editează</PageTitle>
+<PageTitle>Editează Articolul</PageTitle>
 
-<div style="padding-left: 10%; padding-right: 10%;">
+<div class="form-container">
     <RadzenTemplateForm TItem="ArticleDto" Data=@articleDto Submit=@HandleValidSubmit>
-        <RadzenStack Gap="1rem" class="rz-p-sm-12">
-            <RadzenText style="padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
-                <strong>Editează articolul</strong>
-            </RadzenText>
-            @if (articleDto.File != null)
-            {
-                <RadzenImage Path="@articleDto.File.FileUrl" Style="width: 30rem; border-radius: 15px;"
-                    AlternateText="url image" />
-            }
-            <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
-                ChooseText="Selecteză o imagine" Style="width: 100%" Accept="image/*"
-                InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
-            </RadzenUpload>
-            <RadzenFormField Text="Titlu">
-                <ChildContent>
-                    <RadzenTextBox Name="Title" @bind-Value=@articleDto.Title />
-                </ChildContent>
-                <Helper>
-                    <RadzenRequiredValidator Component="Title" Text="Articolul trebuie sa aibă un titlu." />
-                </Helper>
-            </RadzenFormField>
-            <RadzenFormField Text="Subtitlu">
-                <ChildContent>
-                    <RadzenTextBox Name="SubTitle" @bind-Value=@articleDto.SubTitle />
-                </ChildContent>
-                <Helper>
-                    <RadzenRequiredValidator Component="SubTitle" Text="Articolul trebuie sa aibă un subtitlu." />
-                </Helper>
-            </RadzenFormField>
-            <RadzenFormField Text="Text">
-                <ChildContent>
-                    <RadzenHtmlEditor UploadUrl="api/upload/image" @bind-Value=@articleDto.Text style="height: 400px;"
-                        Name="Text">
-                    </RadzenHtmlEditor>
-                </ChildContent>
-                <Helper>
-                    <RadzenRequiredValidator Component="Text" Text="Textul articolului nu poate fi gol." />
-                </Helper>
-            </RadzenFormField>
-            <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Adaugă"></RadzenButton>
-        </RadzenStack>
+        <RadzenCard Style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 2rem;">
+            <RadzenStack Gap="1rem">
+                <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333" style="margin-bottom: 1rem;">
+                    <strong>Editează articolul</strong>
+                </RadzenText>
+
+                @if (articleDto.File != null)
+                {
+                    <RadzenImage Path="@articleDto.File.FileUrl" Style="width: 30rem; border-radius: 15px;"
+                        AlternateText="url image" />
+                }
+
+                <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
+                    ChooseText="Selectează o imagine" Style="width: 100%; margin-bottom: 1rem;" Accept="image/*"
+                    InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
+                </RadzenUpload>
+
+                <RadzenFormField Text="Titlu" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="Title" @bind-Value=@articleDto.Title Style="width: 100%;" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Title" Text="Articolul trebuie să aibă un titlu." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField Text="Subtitlu" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="SubTitle" @bind-Value=@articleDto.SubTitle Style="width: 100%;" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="SubTitle" Text="Articolul trebuie să aibă un subtitlu." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenHtmlEditor UploadUrl="api/upload/image" @bind-Value=@articleDto.Text
+                            Style="width: 100%; height: 300px;" Name="Text" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Text" Text="Textul articolului nu poate fi gol." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Salvează"
+                    Icon="save" Style="width: 100%; margin-top: 2rem;" />
+            </RadzenStack>
+        </RadzenCard>
     </RadzenTemplateForm>
 </div>
 
 @code {
+    [Parameter]
+    public string ArticleId { get; set; } = string.Empty;
     private ArticleDto articleDto = new ArticleDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(ArticleId))
+        {
+            articleDto = await _articleService.GetByIdAsync(ArticleId);
+        }
+    }
 
     private void OnCompleted(UploadCompleteEventArgs e)
     {
@@ -78,7 +96,14 @@
             return;
         }
 
-        await _articleService.AddArticleAsync(articleDto);
-        Navigation.NavigateTo("/");
+        if (!string.IsNullOrEmpty(ArticleId))
+        {
+            await _articleService.EditArticle(articleDto);
+        }
+        else
+        {
+            await _articleService.AddArticleAsync(articleDto);
+        }
+        Navigation.NavigateTo("/articole");
     }
 }

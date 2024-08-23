@@ -8,6 +8,6 @@ public class ExecutiveOfficeMapper : Profile
 {
     public ExecutiveOfficeMapper()
     {
-        CreateMap<ExecutiveOfficeMember, ExecutiveMemberDto>();
+        CreateMap<ExecutiveOfficeMember, ExecutiveMemberDto>().ReverseMap();
     }
 }

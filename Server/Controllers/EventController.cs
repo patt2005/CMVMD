@@ -39,11 +39,41 @@ public class EventController : ControllerBase
         return Ok(jsonEvent);
     }
 
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteEvent(string id)
+    {
+        var articleId = Guid.Parse(id);
+        var eventObj = await _appDbContext.Events.FirstAsync(a => a.Id == articleId);
+
+        if (eventObj == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.Events.Remove(eventObj);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpGet("getall")]
     public async Task<IActionResult> GetEvents()
     {
         var events = await _appDbContext.Events.Include(e => e.File).OrderBy(e => e.StartDate).ToListAsync();
         var eventsJson = _mapper.Map<IEnumerable<EventDto>>(events);
         return Ok(eventsJson);
+    }
+
+    [HttpPut("edit")]
+    public async Task<IActionResult> EditEvent(EventDto eventJson)
+    {
+        var currentEvent = await _appDbContext.Events.FirstAsync(a => a.Id == eventJson.Id);
+
+        _mapper.Map(eventJson, currentEvent);
+
+        _appDbContext.Events.Update(currentEvent);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
     }
 }

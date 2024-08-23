@@ -1,12 +1,20 @@
+using CMVMD.Shared.Models;
+using Microsoft.Extensions.Options;
+
 namespace CMVMD.Server.Services.File;
 
 public class FileService : IFileService
 {
-    const string FolderPath = "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/Files";
+    private readonly UploadFileConfig _fileConfig;
+
+    public FileService(IOptions<UploadFileConfig> fileConfig)
+    {
+        _fileConfig = fileConfig.Value;
+    }
 
     public async Task<string> Add(IFormFile file)
     {
-        var folderPath = FolderPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        var folderPath = _fileConfig.FolderPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
 
         var uniqueFileName = GenerateUniqueFileName(file.FileName);
 

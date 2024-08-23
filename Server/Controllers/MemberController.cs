@@ -3,12 +3,12 @@ using CMVMD.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistance.Data;
+using Persistance.Entities;
 
 namespace CMVMD.Server.Controllers;
 
 [ApiController]
 [Route("api/members")]
-
 public class MemberController : ControllerBase
 {
     private readonly AppDbContext _appDbContext;
@@ -50,5 +50,100 @@ public class MemberController : ControllerBase
         var comision = await _appDbContext.Veterinarians.ToListAsync();
         var response = _mapper.Map<IEnumerable<VeterinarianDto>>(comision);
         return Ok(response);
+    }
+
+    [HttpPost("comision/component/add")]
+    public async Task<IActionResult> AddComissionComomponentMember(ExecutiveMemberDto memberJson)
+    {
+        var member = _mapper.Map<ComisionComponentMember>(memberJson);
+        await _appDbContext.ComisionComponentMembers.AddAsync(member);
+
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPost("dentistry/comision/add")]
+    public async Task<IActionResult> AddDentistryComomponentMember(ExecutiveMemberDto memberJson)
+    {
+        var member = _mapper.Map<DentistryComisionMember>(memberJson);
+        await _appDbContext.DentistryComisionMembers.AddAsync(member);
+
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPost("executive/office/add")]
+    public async Task<IActionResult> AddExecutiveOfficeMember(ExecutiveMemberDto memberJson)
+    {
+        var member = _mapper.Map<ExecutiveOfficeMember>(memberJson);
+        await _appDbContext.ExecutiveOfficeMembers.AddAsync(member);
+
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpDelete("executive/office/delete/{id}")]
+    public async Task<IActionResult> DeleteExecutiveOfficeMember(string id)
+    {
+        var memeberId = Guid.Parse(id);
+        var member = await _appDbContext.ExecutiveOfficeMembers.FirstAsync(a => a.Id == memeberId);
+
+        if (member == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.ExecutiveOfficeMembers.Remove(member);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpDelete("dentistry/comision/delete/{id}")]
+    public async Task<IActionResult> DeleteDentistryComisionMember(string id)
+    {
+        var memeberId = Guid.Parse(id);
+        var member = await _appDbContext.DentistryComisionMembers.FirstAsync(a => a.Id == memeberId);
+
+        if (member == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.DentistryComisionMembers.Remove(member);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpDelete("comision/component/delete/{id}")]
+    public async Task<IActionResult> DeleteComisionComponentMember(string id)
+    {
+        var memeberId = Guid.Parse(id);
+        var member = await _appDbContext.ComisionComponentMembers.FirstAsync(a => a.Id == memeberId);
+
+        if (member == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.ComisionComponentMembers.Remove(member);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    [HttpPost("veterinarian/add")]
+    public async Task<IActionResult> AddVeterinarian(VeterinarianDto memberJson)
+    {
+        var member = _mapper.Map<Veterinarian>(memberJson);
+        await _appDbContext.Veterinarians.AddAsync(member);
+
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
     }
 }

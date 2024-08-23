@@ -28,9 +28,13 @@
             </RadzenText>
         </div>
 
-        <div class="back-button">
+        <div class="button-container">
             <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
                 Click="@(args => Navigation.NavigateTo("/"))" />
+            <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
+                Click="@(args => NavigateToEditPage())" />
+
+            <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteArticle())" />
         </div>
     </div>
 }
@@ -52,5 +56,16 @@ else
     protected override async Task OnInitializedAsync()
     {
         article = await _articleService.GetByIdAsync(ArticleId);
+    }
+
+    private void NavigateToEditPage()
+    {
+        Navigation.NavigateTo($"/articol/editeaza/{ArticleId}");
+    }
+
+    private async Task DeleteArticle()
+    {
+        await _articleService.DeleteById(ArticleId);
+        Navigation.NavigateTo("/articole");
     }
 }

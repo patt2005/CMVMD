@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CMVMD.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+057f41b9532cd1cc82e9a1961813bfa703464994")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed2afeb3d7b5fe0846851120a483e3c173c76aff")]
 [assembly: System.Reflection.AssemblyProductAttribute("CMVMD.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CMVMD.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,9 +1,11 @@
-@page "/documents"
 @using System.Net.Http
 @using System.Threading.Tasks
+@using CMVMD.Client.Services.Document
 @using CMVMD.Shared.Models
 @inject HttpClient HttpClient
 @inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+@inject IDocumentService _documentService
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="20" AllowPaging="true"
@@ -16,7 +18,15 @@
         <RadzenDataGridColumn Title="Documente" Width="80px" TextAlign="TextAlign.Center">
             <Template Context="data">
                 <RadzenButton Click=@(args => DownloadDocument(@data.File!.FileUrl)) Text="Descarcă"
-                    ButtonStyle="ButtonStyle.Primary" />
+                    ButtonStyle="ButtonStyle.Primary" Icon="download" />
+            </Template>
+        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Acțiuni" Width="100px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenButton Click=@(args => NavigateToEditPage(@data.Id)) Text="Editează"
+                    ButtonStyle="ButtonStyle.Info" Icon="edit" />
+                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
+                    Click="@(args => DeleteDocument(@data.Id))" />
             </Template>
         </RadzenDataGridColumn>
     </Columns>
@@ -39,6 +49,8 @@
 @code {
     [Parameter]
     public IEnumerable<DocumentDto> Documents { get; set; } = default!;
+    [Parameter]
+    public bool IsLegislationDocument { get; set; }
 
     private async Task DownloadDocument(string fileUrl)
     {
@@ -60,6 +72,34 @@
         catch
         {
             return Array.Empty<byte>();
+        }
+    }
+
+    private async Task DeleteDocument(Guid guidId)
+    {
+        string id = guidId.ToString();
+        if (IsLegislationDocument)
+        {
+            await _documentService.DeleteLegislationDocumentById(id);
+        }
+        else
+        {
+            await _documentService.DeleteTrainingDocumentById(id);
+        }
+        Navigation.NavigateTo("/");
+    }
+
+    private void NavigateToEditPage(Guid documentId)
+    {
+        string id = documentId.ToString();
+        if (IsLegislationDocument)
+        {
+            Navigation.NavigateTo($"documente/legislatie/editeaza/{id}");
+
+        }
+        else
+        {
+            Navigation.NavigateTo($"documente/formare/editeaza/{id}");
         }
     }
 }

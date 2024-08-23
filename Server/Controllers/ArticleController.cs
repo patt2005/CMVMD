@@ -1,4 +1,3 @@
-using System.Linq.Dynamic.Core;
 using AutoMapper;
 using CMVMD.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +28,23 @@ public class ArticleController : ControllerBase
         return Ok(response);
     }
 
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteArticle(string id)
+    {
+        var articleId = Guid.Parse(id);
+        var article = await _appDbContext.Articles.FirstAsync(a => a.Id == articleId);
+
+        if (article == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.Articles.Remove(article);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpPost("add")]
     public async Task<IActionResult> AddArticle(ArticleDto articleDto)
     {
@@ -47,5 +63,18 @@ public class ArticleController : ControllerBase
         var article = await _appDbContext.Articles.Include(a => a.File).FirstAsync(a => a.Id == guidId);
         var data = _mapper.Map<ArticleDto>(article);
         return Ok(data);
+    }
+
+    [HttpPut("edit")]
+    public async Task<IActionResult> EditArticle(ArticleDto articleJson)
+    {
+        var currentArticle = await _appDbContext.Articles.FirstAsync(a => a.Id == articleJson.Id);
+
+        _mapper.Map(articleJson, currentArticle);
+
+        _appDbContext.Articles.Update(currentArticle);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
     }
 }

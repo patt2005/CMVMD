@@ -17,6 +17,16 @@ public class ArticleService : IArticleService
         await _httpClient.PostAsJsonAsync("api/articles/add", article);
     }
 
+    public async Task DeleteById(string id)
+    {
+        await _httpClient.DeleteAsync($"api/articles/delete/{id}");
+    }
+
+    public async Task EditArticle(ArticleDto article)
+    {
+        await _httpClient.PutAsJsonAsync("api/articles/edit", article);
+    }
+
     public Task<IEnumerable<ArticleDto>> GetAllArticlesAsync()
     {
         var httpResponse = _httpClient.GetFromJsonAsync<IEnumerable<ArticleDto>>("api/articles/getall");

@@ -8,6 +8,6 @@ public class DentistryComisionMapper : Profile
 {
     public DentistryComisionMapper()
     {
-        CreateMap<DentistryComisionMember, ExecutiveMemberDto>();
+        CreateMap<DentistryComisionMember, ExecutiveMemberDto>().ReverseMap();
     }
 }

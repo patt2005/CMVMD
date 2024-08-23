@@ -1,4 +1,4 @@
-@page "/formare/adauga"
+@page "/documente/formare/editeaza/{DocumentId?}"
 @using CMVMD.Client.Services.Document
 @using CMVMD.Shared.Models
 @using System.Text.Json
@@ -9,8 +9,14 @@
     <RadzenTemplateForm TItem="DocumentDto" Data=@documentDto Submit=@SaveDocument>
         <RadzenStack Gap="1rem" class="rz-p-sm-12">
             <RadzenText style="padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
-                <strong>Adaugă un document</strong>
+                <strong>Editează documentul</strong>
             </RadzenText>
+            @if (documentDto.File != null)
+            {
+                <RadzenText style="padding-top: 1%; align-items: center;" TextStyle="TextStyle.H6">
+                    @documentDto.File.FileName
+                </RadzenText>
+            }
             <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
                 ChooseText="Selecteză un document" Style="width: 100%" Accept="*/*"
                 InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
@@ -37,7 +43,17 @@
 </div>
 
 @code {
+    [Parameter]
+    public string DocumentId { get; set; } = string.Empty;
     private DocumentDto documentDto = new DocumentDto();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(DocumentId))
+        {
+            documentDto = await _documentService.GetTrainingDocumentById(DocumentId);
+        }
+    }
 
     private void OnCompleted(UploadCompleteEventArgs e)
     {
@@ -48,7 +64,14 @@
 
     private async Task SaveDocument()
     {
-        await _documentService.AddTrainingDocument(documentDto);
+        if (string.IsNullOrEmpty(DocumentId))
+        {
+            await _documentService.AddTrainingDocument(documentDto);
+        }
+        else
+        {
+            await _documentService.EditTrainingDocument(documentDto);
+        }
         Navigation.NavigateTo("/");
     }
 }
