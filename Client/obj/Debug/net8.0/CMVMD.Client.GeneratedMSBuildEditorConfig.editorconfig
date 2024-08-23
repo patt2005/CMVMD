@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkTWVtYmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddVeterinarian.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkVmV0ZXJpbmFyaWFuLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ComisionComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29taXNpb25Db21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

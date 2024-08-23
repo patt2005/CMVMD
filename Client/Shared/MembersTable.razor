@@ -18,7 +18,7 @@
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.LastName)" Title="Prenume" Width="160px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.JobTitle)" Title="Funcția" Width="400px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.Contacts)" Title="Contacte" Width="200px" />
-        <RadzenDataGridColumn Title="Acțiuni" Width="100px" TextAlign="TextAlign.Center">
+        <RadzenDataGridColumn Title="Acțiuni" Width="150px" TextAlign="TextAlign.Center">
             <Template Context="data">
                 <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
                     Click="@(args => DeleteMember(@data.Id))" />

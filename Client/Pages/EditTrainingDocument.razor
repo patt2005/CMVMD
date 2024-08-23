@@ -4,6 +4,7 @@
 @using System.Text.Json
 @inject IDocumentService _documentService
 @inject NavigationManager Navigation
+@inject NotificationService NotificationService
 
 <div style="padding-left: 10%; padding-right: 10%;">
     <RadzenTemplateForm TItem="DocumentDto" Data=@documentDto Submit=@SaveDocument>
@@ -37,7 +38,8 @@
                     <RadzenRequiredValidator Component="Description" Text="Documentul trebuie sa aibă o descriere." />
                 </Helper>
             </RadzenFormField>
-            <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Adaugă"></RadzenButton>
+            <RadzenButton ButtonStyle="ButtonStyle.Primary" Icon="save" ButtonType="ButtonType.Submit" Text="Salvează">
+            </RadzenButton>
         </RadzenStack>
     </RadzenTemplateForm>
 </div>
@@ -64,6 +66,17 @@
 
     private async Task SaveDocument()
     {
+        if (documentDto.File == null)
+        {
+            NotificationService.Notify(new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Warning,
+                    Summary = "Lipsă document",
+                    Detail = "Documentul nu poate fi gol.",
+                    Duration = 4000
+                });
+            return;
+        }
         if (string.IsNullOrEmpty(DocumentId))
         {
             await _documentService.AddTrainingDocument(documentDto);

@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using CMVMD.Shared.Models;
 
 namespace CMVMD.Client.Services.Member;
@@ -64,5 +65,15 @@ public class MemberService : IMemberService
     {
         var httpResponse = await _httpClient.GetFromJsonAsync<IEnumerable<VeterinarianDto>>("api/members/veterinarian/getall");
         return httpResponse!;
+    }
+
+    public async Task AddVeterinarian(VeterinarianDto veterinarianDto)
+    {
+        await _httpClient.PostAsJsonAsync("api/members/veterinarian/add", veterinarianDto);
+    }
+
+    public async Task DeleteVeterinarianById(string id)
+    {
+        await _httpClient.DeleteAsync($"api/members/veterinarian/delete/{id}");
     }
 }

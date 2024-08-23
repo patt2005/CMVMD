@@ -3,17 +3,23 @@
 @using CMVMD.Shared.Models
 @inject IMemberService _memberService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
 
 <PageTitle>Lista Medicilor Veterinari</PageTitle>
 
-<RadzenText style="align-items: center; padding-bottom: 1%;" class="text-center" TextStyle="TextStyle.H4"><strong>Lista
+<RadzenText style="align-items: center;" class="text-center" TextStyle="TextStyle.H4"><strong>Lista
         Medicilor
         Veterinari</strong></RadzenText>
+
+<div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+    <RadzenButton Click=@(args => NavigateToAddVeterinarianPage()) Text="Adaugă" ButtonStyle="ButtonStyle.Info"
+        Icon="add" />
+</div>
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="20" AllowPaging="true"
     PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" Data="@veterinarians"
-    LogicalFilterOperator="LogicalFilterOperator.Or" style="height: 75vh;">
+    LogicalFilterOperator="LogicalFilterOperator.Or" style="height: 70vh;">
     <Columns>
         <RadzenDataGridColumn Property="@nameof(VeterinarianDto.FirstName)" Title="Nume" MinWidth="150px"
             Width="auto" />
@@ -69,6 +75,12 @@
                 }
             </Template>
         </RadzenDataGridColumn>
+        <RadzenDataGridColumn Title="Acțiuni" Width="200px" TextAlign="TextAlign.Center">
+            <Template Context="data">
+                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem; margin-right: 1rem;"
+                    ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteVeterinarian(@data.Id))" />
+            </Template>
+        </RadzenDataGridColumn>
     </Columns>
 </RadzenDataGrid>
 
@@ -78,5 +90,17 @@
     protected override async Task OnInitializedAsync()
     {
         veterinarians = await _memberService.GetVeterinarians();
+    }
+
+    private void NavigateToAddVeterinarianPage()
+    {
+        Navigation.NavigateTo("/veterinar/adauga");
+    }
+
+    private async Task DeleteVeterinarian(Guid guidId)
+    {
+        string id = guidId.ToString();
+        await _memberService.DeleteVeterinarianById(id);
+        Navigation.NavigateTo("/");
     }
 }

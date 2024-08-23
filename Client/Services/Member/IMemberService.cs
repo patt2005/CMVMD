@@ -14,4 +14,6 @@ public interface IMemberService
     Task AddExecutiveOfficeMember(ExecutiveMemberDto member);
     Task AddDentistryComisionMember(ExecutiveMemberDto member);
     Task AddComisionComponentMember(ExecutiveMemberDto member);
+    Task AddVeterinarian(VeterinarianDto veterinarianDto);
+    Task DeleteVeterinarianById(string id);
 }

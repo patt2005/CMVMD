@@ -146,4 +146,21 @@ public class MemberController : ControllerBase
 
         return Ok();
     }
+
+    [HttpDelete("veterinarian/delete/{id}")]
+    public async Task<IActionResult> DeleteVeterinarian(string id)
+    {
+        var memeberId = Guid.Parse(id);
+        var member = await _appDbContext.Veterinarians.FirstAsync(a => a.Id == memeberId);
+
+        if (member == null)
+        {
+            return NotFound();
+        }
+
+        _appDbContext.Veterinarians.Remove(member);
+        await _appDbContext.SaveChangesAsync();
+
+        return Ok();
+    }
 }
