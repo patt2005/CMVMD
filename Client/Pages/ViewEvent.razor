@@ -1,11 +1,14 @@
 @page "/eveniment/{EventId}"
 @inject IEventService _eventService
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 @using CMVMD.Client.Services
 @using CMVMD.Client.Services.Article
 @using CMVMD.Client.Services.Event
 @using CMVMD.Shared.Models
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 
 @if (eventObj != null)
 {
@@ -33,11 +36,14 @@
         <div class="button-container">
             <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
                 Click="@(args => Navigation.NavigateTo("/"))" />
+            @if (user?.Identity?.IsAuthenticated ?? false)
+            {
+                <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
+                    Click="@(args => NavigateToEditPage())" />
 
-            <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
-                Click="@(args => NavigateToEditPage())" />
+                <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteEvent())" />
 
-            <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteEvent())" />
+            }
         </div>
     </div>
 }
@@ -56,8 +62,13 @@ else
 
     private EventDto? eventObj { get; set; }
 
+    private ClaimsPrincipal? user;
+
     protected override async Task OnInitializedAsync()
     {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+
         eventObj = await _eventService.GetByIdAsync(EventId);
     }
 

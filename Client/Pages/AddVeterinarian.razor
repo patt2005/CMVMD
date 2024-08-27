@@ -9,82 +9,98 @@
 
 <PageTitle>Adaugă Veterinarul</PageTitle>
 
-<div class="form-container">
-    <RadzenTemplateForm TItem="VeterinarianDto" Data=@veterinarian Submit=@HandleValidSubmit>
-        <RadzenCard Style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 2rem;">
-            <RadzenStack Gap="1rem">
-                <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333" style="margin-bottom: 1rem;">
-                    <strong>Adaugă Veterinarul</strong>
-                </RadzenText>
+<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+    <Authorized Context="auth">
+        <div class="form-container">
+            <RadzenTemplateForm TItem="VeterinarianDto" Data=@veterinarian Submit=@HandleValidSubmit Context="veter">
+                <RadzenCard Style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 2rem;">
+                    <RadzenStack Gap="1rem">
+                        <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333"
+                            style="margin-bottom: 1rem;">
+                            <strong>Adaugă Veterinarul</strong>
+                        </RadzenText>
 
-                <RadzenFormField Text="Nume" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="FirstName" @bind-Value=@veterinarian.FirstName Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="FirstName" Text="Veterinarul trebuie să aibă un nume." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Nume" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="FirstName" @bind-Value=@veterinarian.FirstName
+                                    Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="FirstName"
+                                    Text="Veterinarul trebuie să aibă un nume." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenFormField Text="Prenume" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="LastName" @bind-Value=@veterinarian.LastName Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="LastName" Text="Veterinarul trebuie să aibă un prenume." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Prenume" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="LastName" @bind-Value=@veterinarian.LastName
+                                    Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="LastName"
+                                    Text="Veterinarul trebuie să aibă un prenume." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenFormField Text="Codul medicului veterinar atribuit de CMV" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="VeterinarianCode" @bind-Value=@veterinarian.VeterinarianCode
-                            Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="VeterinarianCode"
-                            Text="Veterinarul trebuie să aibă un cod." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Codul medicului veterinar atribuit de CMV" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="VeterinarianCode" @bind-Value=@veterinarian.VeterinarianCode
+                                    Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="VeterinarianCode"
+                                    Text="Veterinarul trebuie să aibă un cod." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenFormField Text="Diploma seria/numărul" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="DiplomaId" @bind-Value=@veterinarian.DiplomaId Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="DiplomaId"
-                            Text="Veterinarul trebuie să aibă o serie a diplomei." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Diploma seria/numărul" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="DiplomaId" @bind-Value=@veterinarian.DiplomaId
+                                    Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="DiplomaId"
+                                    Text="Veterinarul trebuie să aibă o serie a diplomei." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenDatePicker @bind-Value=@veterinarian.RegistrationDate ShowTime="true" ShowSeconds="true"
-                    HoursStep="1.5" MinutesStep="5" SecondsStep="10" DateFormat="MM/dd/yyyy HH:mm"
-                    Name="DatePickerWithTime" />
+                        <RadzenDatePicker @bind-Value=@veterinarian.RegistrationDate ShowTime="true" ShowSeconds="true"
+                            HoursStep="1.5" MinutesStep="5" SecondsStep="10" DateFormat="MM/dd/yyyy HH:mm"
+                            Name="DatePickerWithTime" />
 
-                <RadzenFormField Text="Este activ">
-                    <RadzenRadioButtonList @bind-Value=@(veterinarian.IsActive) TValue="bool" class="rz-m-4 rz-mt-8">
-                        <Items>
-                            <RadzenRadioButtonListItem Text="Da" Value=true />
-                            <RadzenRadioButtonListItem Text="Nu" Value=false />
-                        </Items>
-                    </RadzenRadioButtonList>
-                </RadzenFormField>
+                        <RadzenFormField Text="Este activ">
+                            <RadzenRadioButtonList @bind-Value=@(veterinarian.IsActive) TValue="bool"
+                                class="rz-m-4 rz-mt-8">
+                                <Items>
+                                    <RadzenRadioButtonListItem Text="Da" Value=true />
+                                    <RadzenRadioButtonListItem Text="Nu" Value=false />
+                                </Items>
+                            </RadzenRadioButtonList>
+                        </RadzenFormField>
 
-                <RadzenFormField Text="Sacțiuni">
-                    <RadzenRadioButtonList @bind-Value=@(veterinarian.HasPenalties) TValue="bool"
-                        class="rz-m-4 rz-mt-8">
-                        <Items>
-                            <RadzenRadioButtonListItem Text="Da" Value=true />
-                            <RadzenRadioButtonListItem Text="Nu" Value=false />
-                        </Items>
-                    </RadzenRadioButtonList>
-                </RadzenFormField>
+                        <RadzenFormField Text="Sacțiuni">
+                            <RadzenRadioButtonList @bind-Value=@(veterinarian.HasPenalties) TValue="bool"
+                                class="rz-m-4 rz-mt-8">
+                                <Items>
+                                    <RadzenRadioButtonListItem Text="Da" Value=true />
+                                    <RadzenRadioButtonListItem Text="Nu" Value=false />
+                                </Items>
+                            </RadzenRadioButtonList>
+                        </RadzenFormField>
 
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Salvează"
-                    Icon="save" Style="width: 100%; margin-top: 2rem;" />
-            </RadzenStack>
-        </RadzenCard>
-    </RadzenTemplateForm>
-</div>
+                        <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Salvează"
+                            Icon="save" Style="width: 100%; margin-top: 2rem;" />
+                    </RadzenStack>
+                </RadzenCard>
+            </RadzenTemplateForm>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            Nu aveți permisiunea de a accesa această pagină.
+        </div>
+    </NotAuthorized>
+</Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
 
 @code {
     private VeterinarianDto veterinarian = new VeterinarianDto();

@@ -70,6 +70,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTGVnaXNsYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/TrainingDocuments.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhaW5pbmdEb2N1bWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

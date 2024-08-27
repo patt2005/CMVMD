@@ -2,10 +2,13 @@
 @using System.Threading.Tasks
 @using CMVMD.Client.Services.Document
 @using CMVMD.Shared.Models
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @inject HttpClient HttpClient
 @inject IJSRuntime JSRuntime
 @inject NavigationManager Navigation
 @inject IDocumentService _documentService
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="20" AllowPaging="true"
@@ -21,14 +24,17 @@
                     ButtonStyle="ButtonStyle.Primary" Icon="download" />
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn Title="Acțiuni" Width="100px" TextAlign="TextAlign.Center">
-            <Template Context="data">
-                <RadzenButton Click=@(args => NavigateToEditPage(@data.Id)) Text="Editează"
-                    ButtonStyle="ButtonStyle.Info" Icon="edit" />
-                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
-                    Click="@(args => DeleteDocument(@data.Id))" />
-            </Template>
-        </RadzenDataGridColumn>
+        @if (user?.Identity?.IsAuthenticated ?? false)
+        {
+            <RadzenDataGridColumn Title="Acțiuni" Width="100px" TextAlign="TextAlign.Center">
+                <Template Context="data">
+                    <RadzenButton Click=@(args => NavigateToEditPage(@data.Id)) Text="Editează"
+                        ButtonStyle="ButtonStyle.Info" Icon="edit" />
+                    <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
+                        Click="@(args => DeleteDocument(@data.Id))" />
+                </Template>
+            </RadzenDataGridColumn>
+        }
     </Columns>
 </RadzenDataGrid>
 
@@ -51,6 +57,14 @@
     public IEnumerable<DocumentDto> Documents { get; set; } = default!;
     [Parameter]
     public bool IsLegislationDocument { get; set; }
+
+    private ClaimsPrincipal? user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+    }
 
     private async Task DownloadDocument(string fileUrl)
     {

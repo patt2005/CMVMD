@@ -1,9 +1,12 @@
 @page "/lista/veterinarilor"
 @using CMVMD.Client.Services.Member
 @using CMVMD.Shared.Models
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @inject IMemberService _memberService
 @inject IJSRuntime JSRuntime
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 <PageTitle>Lista Medicilor Veterinari</PageTitle>
 
@@ -11,10 +14,13 @@
         Medicilor
         Veterinari</strong></RadzenText>
 
-<div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+@if (user?.Identity?.IsAuthenticated ?? false)
+{
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
     <RadzenButton Click=@(args => NavigateToAddVeterinarianPage()) Text="Adaugă" ButtonStyle="ButtonStyle.Info"
         Icon="add" />
 </div>
+}
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="20" AllowPaging="true"
@@ -75,20 +81,26 @@
                 }
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn Title="Acțiuni" Width="200px" TextAlign="TextAlign.Center">
-            <Template Context="data">
-                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem; margin-right: 1rem;"
-                    ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteVeterinarian(@data.Id))" />
-            </Template>
-        </RadzenDataGridColumn>
+        @if (user?.Identity?.IsAuthenticated ?? false)
+        {
+            <RadzenDataGridColumn Title="Acțiuni" Width="200px" TextAlign="TextAlign.Center">
+                <Template Context="data">
+                    <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem; margin-right: 1rem;"
+                        ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteVeterinarian(@data.Id))" />
+                </Template>
+            </RadzenDataGridColumn>
+        }
     </Columns>
 </RadzenDataGrid>
 
 @code {
     private IEnumerable<VeterinarianDto> veterinarians = Enumerable.Empty<VeterinarianDto>();
+    private ClaimsPrincipal? user;
 
     protected override async Task OnInitializedAsync()
     {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
         veterinarians = await _memberService.GetVeterinarians();
     }
 

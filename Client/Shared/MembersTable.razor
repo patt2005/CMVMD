@@ -2,12 +2,18 @@
 @using CMVMD.Client.Services.Member
 @using CMVMD.Shared.Data
 @using CMVMD.Shared.Models
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
 @inject IMemberService _memberService
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider _authenticationStateProvider
 
-<div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+@if (user?.Identity?.IsAuthenticated ?? false)
+{
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
     <RadzenButton Click=@(args => NavigateToAddMemberPage()) Text="Adaugă" ButtonStyle="ButtonStyle.Info" Icon="add" />
-</div>
+    </div>
+}
 
 <RadzenDataGrid AllowFiltering="true" AllowColumnResize="true" AllowAlternatingRows="false"
     FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="10" AllowPaging="true"
@@ -18,12 +24,15 @@
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.LastName)" Title="Prenume" Width="160px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.JobTitle)" Title="Funcția" Width="400px" />
         <RadzenDataGridColumn Property="@nameof(ExecutiveMemberDto.Contacts)" Title="Contacte" Width="200px" />
-        <RadzenDataGridColumn Title="Acțiuni" Width="150px" TextAlign="TextAlign.Center">
-            <Template Context="data">
-                <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
-                    Click="@(args => DeleteMember(@data.Id))" />
-            </Template>
-        </RadzenDataGridColumn>
+        @if (user?.Identity?.IsAuthenticated ?? false)
+        {
+            <RadzenDataGridColumn Title="Acțiuni" Width="150px" TextAlign="TextAlign.Center">
+                <Template Context="data">
+                    <RadzenButton Text="Șterge" Icon="delete" style="margin-left: 1rem;" ButtonStyle="ButtonStyle.Danger"
+                        Click="@(args => DeleteMember(@data.Id))" />
+                </Template>
+            </RadzenDataGridColumn>
+        }
     </Columns>
 </RadzenDataGrid>
 
@@ -32,8 +41,12 @@
     public MemberType ExecutiveMemberType { get; set; } = default!;
     private IEnumerable<ExecutiveMemberDto> executiveMembers = Enumerable.Empty<ExecutiveMemberDto>();
 
+    private ClaimsPrincipal? user;
+
     protected override async Task OnInitializedAsync()
     {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
         switch (ExecutiveMemberType)
         {
             case MemberType.ComisionComponentMember:

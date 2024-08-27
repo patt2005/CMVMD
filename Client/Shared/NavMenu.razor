@@ -1,4 +1,11 @@
-﻿<style>
+﻿@using CMVMD.Client.Services.User
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject NavigationManager Navigation
+@inject IUserService _userService
+
+<style>
     .rz-panel-menu-item {
         font-size: 0.875rem;
         font-weight: normal;
@@ -6,11 +13,16 @@
 </style>
 
 <RadzenHeader>
-    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0">
+    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="0" style="width: 100%;">
         <RadzenSidebarToggle Click="@(() => sidebarExpanded = !sidebarExpanded)" />
-        <RadzenText class="pt-2" TextStyle="TextStyle.H3" style="color:rgba(58,136,244,255)">
+        <RadzenText class="pt-2" TextStyle="TextStyle.H3" style="color:rgba(58,136,244,255); flex-grow: 1;">
             <strong>CMV.md</strong>
         </RadzenText>
+        @if (user?.Identity?.IsAuthenticated ?? false)
+        {
+            <RadzenButton Text="Ieșire" Icon="logout" ButtonStyle="ButtonStyle.Danger" style="margin-right: 20px;"
+                Click="@Logout" />
+        }
     </RadzenStack>
 </RadzenHeader>
 
@@ -39,24 +51,43 @@
             Path="/articole" />
         <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Evenimente" Icon="event" Click="HideSideBar"
             Path="/calendar" />
-        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un articol" Icon="post_add" Click="HideSideBar"
-            Path="/articol/editeaza" />
-        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un document" Icon="upload_file">
-            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Legislaţie" Click="HideSideBar"
-                Path="/documente/legislatie/editeaza" />
-            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Formarea profesională continuă" Click="HideSideBar"
-                Path="/documente/formare/editeaza" />
-        </RadzenPanelMenuItem>
-        <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un eveniment" Icon="calendar_add_on"
-            Click="HideSideBar" Path="/eveniment/editeaza" />
+        @if (user?.Identity?.IsAuthenticated ?? false)
+        {
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un articol" Icon="post_add" Click="HideSideBar"
+                Path="/articol/editeaza" />
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un document" Icon="upload_file">
+                <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Legislaţie" Click="HideSideBar"
+                    Path="/documente/legislatie/editeaza" />
+                <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Formarea profesională continuă" Click="HideSideBar"
+                    Path="/documente/formare/editeaza" />
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem class="rz-panel-menu-item" Text="Adaugă un eveniment" Icon="calendar_add_on"
+                Click="HideSideBar" Path="/eveniment/editeaza" />
+        }
     </RadzenPanelMenu>
 </RadzenSidebar>
 
 @code {
+    private ClaimsPrincipal? user;
     bool sidebarExpanded = false;
 
-    void HideSideBar()
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+    }
+
+    private void HideSideBar()
     {
         sidebarExpanded = false;
+    }
+
+    private async Task Logout()
+    {
+        var success = await _userService.Logout();
+        if (success)
+        {
+            Navigation.Refresh();
+        }
     }
 }

@@ -1,9 +1,12 @@
 @page "/articol/{ArticleId}"
 @inject IArticleService _articleService
 @inject NavigationManager Navigation
+@inject AuthenticationStateProvider _authenticationStateProvider
 
 @using CMVMD.Client.Services.Article
 @using CMVMD.Shared.Models
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
 
 @if (article != null)
 {
@@ -31,10 +34,14 @@
         <div class="button-container">
             <RadzenButton Text="Înapoi" Icon="arrow_back" ButtonStyle="ButtonStyle.Secondary"
                 Click="@(args => Navigation.NavigateTo("/"))" />
-            <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
-                Click="@(args => NavigateToEditPage())" />
+            @if (user?.Identity?.IsAuthenticated ?? false)
+            {
+                <RadzenButton Text="Editează" Icon="edit" ButtonStyle="ButtonStyle.Info"
+                    Click="@(args => NavigateToEditPage())" />
 
-            <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteArticle())" />
+                <RadzenButton Text="Șterge" Icon="delete" ButtonStyle="ButtonStyle.Danger" Click="@(args => DeleteArticle())" />
+
+            }
         </div>
     </div>
 }
@@ -53,8 +60,13 @@ else
 
     private ArticleDto? article { get; set; }
 
+    private ClaimsPrincipal? user;
+
     protected override async Task OnInitializedAsync()
     {
+        var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+
         article = await _articleService.GetByIdAsync(ArticleId);
     }
 

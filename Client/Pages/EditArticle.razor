@@ -8,59 +8,70 @@
 
 <PageTitle>Editează Articolul</PageTitle>
 
-<div class="form-container">
-    <RadzenTemplateForm TItem="ArticleDto" Data=@articleDto Submit=@HandleValidSubmit>
-        <RadzenCard Style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 2rem;">
-            <RadzenStack Gap="1rem">
-                <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333" style="margin-bottom: 1rem;">
-                    <strong>Editează articolul</strong>
-                </RadzenText>
+<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+    <Authorized Context="auth">
+        <div class="form-container">
+            <RadzenTemplateForm TItem="ArticleDto" Data=@articleDto Submit=@HandleValidSubmit Context="art">
+                <RadzenCard Style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px; padding: 2rem;">
+                    <RadzenStack Gap="1rem">
+                        <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333"
+                            style="margin-bottom: 1rem;">
+                            <strong>Editează articolul</strong>
+                        </RadzenText>
 
-                @if (articleDto.File != null)
-                {
-                    <RadzenImage Path="@articleDto.File.FileUrl" Style="width: 30rem; border-radius: 15px;"
-                        AlternateText="url image" />
-                }
+                        @if (articleDto.File != null)
+                        {
+                            <RadzenImage Path="@articleDto.File.FileUrl" Style="width: 30rem; border-radius: 15px;"
+                                AlternateText="url image" />
+                        }
 
-                <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
-                    ChooseText="Selectează o imagine" Style="width: 100%; margin-bottom: 1rem;" Accept="image/*"
-                    InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
-                </RadzenUpload>
+                        <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
+                            ChooseText="Selectează o imagine" Style="width: 100%; margin-bottom: 1rem;" Accept="image/*"
+                            InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
+                        </RadzenUpload>
 
-                <RadzenFormField Text="Titlu" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="Title" @bind-Value=@articleDto.Title Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="Title" Text="Articolul trebuie să aibă un titlu." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Titlu" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="Title" @bind-Value=@articleDto.Title Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="Title" Text="Articolul trebuie să aibă un titlu." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenFormField Text="Subtitlu" Variant="Variant.Outlined">
-                    <ChildContent>
-                        <RadzenTextBox Name="SubTitle" @bind-Value=@articleDto.SubTitle Style="width: 100%;" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="SubTitle" Text="Articolul trebuie să aibă un subtitlu." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField Text="Subtitlu" Variant="Variant.Outlined">
+                            <ChildContent>
+                                <RadzenTextBox Name="SubTitle" @bind-Value=@articleDto.SubTitle Style="width: 100%;" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="SubTitle"
+                                    Text="Articolul trebuie să aibă un subtitlu." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenFormField>
-                    <ChildContent>
-                        <RadzenHtmlEditor UploadUrl="api/upload/image" @bind-Value=@articleDto.Text
-                            Style="width: 100%; height: 300px;" Name="Text" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="Text" Text="Textul articolului nu poate fi gol." />
-                    </Helper>
-                </RadzenFormField>
+                        <RadzenFormField>
+                            <ChildContent>
+                                <RadzenHtmlEditor UploadUrl="api/upload/image" @bind-Value=@articleDto.Text
+                                    Style="width: 100%; height: 300px;" Name="Text" />
+                            </ChildContent>
+                            <Helper>
+                                <RadzenRequiredValidator Component="Text" Text="Textul articolului nu poate fi gol." />
+                            </Helper>
+                        </RadzenFormField>
 
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Salvează"
-                    Icon="save" Style="width: 100%; margin-top: 2rem;" />
-            </RadzenStack>
-        </RadzenCard>
-    </RadzenTemplateForm>
-</div>
+                        <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Salvează"
+                            Icon="save" Style="width: 100%; margin-top: 2rem;" />
+                    </RadzenStack>
+                </RadzenCard>
+            </RadzenTemplateForm>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            Nu aveți permisiunea de a accesa această pagină.
+        </div>
+    </NotAuthorized>
+</Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
 
 @code {
     [Parameter]

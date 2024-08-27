@@ -6,43 +6,54 @@
 @inject NavigationManager Navigation
 @inject NotificationService NotificationService
 
-<div style="padding-left: 10%; padding-right: 10%;">
-    <RadzenTemplateForm TItem="DocumentDto" Data=@documentDto Submit=@SaveDocument>
-        <RadzenStack Gap="1rem" class="rz-p-sm-12">
-            <RadzenText style="padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
-                <strong>Editează documentul</strong>
-            </RadzenText>
-            @if (documentDto.File != null)
-            {
-                <RadzenText style="padding-top: 1%; align-items: center;" TextStyle="TextStyle.H6">
-                    @documentDto.File.FileName
-                </RadzenText>
-            }
-            <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
-                ChooseText="Selecteză un document" Style="width: 100%" Accept="*/*"
-                InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
-            </RadzenUpload>
-            <RadzenFormField Text="Numele">
-                <ChildContent>
-                    <RadzenTextBox Name="Name" @bind-Value=@documentDto.Name />
-                </ChildContent>
-                <Helper>
-                    <RadzenRequiredValidator Component="Name" Text="Documentul trebuie sa aibă un nume." />
-                </Helper>
-            </RadzenFormField>
-            <RadzenFormField Text="Descriere">
-                <ChildContent>
-                    <RadzenTextBox Name="Description" @bind-Value=@documentDto.Description />
-                </ChildContent>
-                <Helper>
-                    <RadzenRequiredValidator Component="Description" Text="Documentul trebuie sa aibă o descriere." />
-                </Helper>
-            </RadzenFormField>
-            <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Salvează">
-            </RadzenButton>
-        </RadzenStack>
-    </RadzenTemplateForm>
-</div>
+<Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
+    <Authorized Context="auth">
+        <div style="padding-left: 10%; padding-right: 10%;">
+            <RadzenTemplateForm TItem="DocumentDto" Data=@documentDto Submit=@SaveDocument Context="lg">
+                <RadzenStack Gap="1rem" class="rz-p-sm-12">
+                    <RadzenText style="padding-bottom: 1%; align-items: center;" TextStyle="TextStyle.H4">
+                        <strong>Editează documentul</strong>
+                    </RadzenText>
+                    @if (documentDto.File != null)
+                    {
+                        <RadzenText style="padding-top: 1%; align-items: center;" TextStyle="TextStyle.H6">
+                            @documentDto.File.FileName
+                        </RadzenText>
+                    }
+                    <RadzenUpload Url="api/upload/file/single" Complete="@((e)=>OnCompleted(e))" Icon="upload"
+                        ChooseText="Selecteză un document" Style="width: 100%" Accept="*/*"
+                        InputAttributes="@(new Dictionary<string,object>(){ { "aria-label", "select file" }})">
+                    </RadzenUpload>
+                    <RadzenFormField Text="Numele">
+                        <ChildContent>
+                            <RadzenTextBox Name="Name" @bind-Value=@documentDto.Name />
+                        </ChildContent>
+                        <Helper>
+                            <RadzenRequiredValidator Component="Name" Text="Documentul trebuie sa aibă un nume." />
+                        </Helper>
+                    </RadzenFormField>
+                    <RadzenFormField Text="Descriere">
+                        <ChildContent>
+                            <RadzenTextBox Name="Description" @bind-Value=@documentDto.Description />
+                        </ChildContent>
+                        <Helper>
+                            <RadzenRequiredValidator Component="Description"
+                                Text="Documentul trebuie sa aibă o descriere." />
+                        </Helper>
+                    </RadzenFormField>
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save"
+                        Text="Salvează">
+                    </RadzenButton>
+                </RadzenStack>
+            </RadzenTemplateForm>
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            Nu aveți permisiunea de a accesa această pagină.
+        </div>
+    </NotAuthorized>
+</Microsoft.AspNetCore.Components.Authorization.AuthorizeView>
 
 @code {
     [Parameter]

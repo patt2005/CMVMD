@@ -1,0 +1,85 @@
+@page "/admin/registreaza"
+
+@using CMVMD.Client.Services.User
+@using CMVMD.Shared.Models
+@inject NavigationManager Navigation
+@inject IUserService _userService
+
+<PageTitle>Înregistrează</PageTitle>
+
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-4 rz-p-md-12" style="max-width: 600px;">
+    <RadzenText TextStyle="TextStyle.H5" FontWeight="700" Color="#333333" style="margin-bottom: 1rem;">
+        <strong>Înregistrează-te</strong>
+    </RadzenText>
+
+    <RadzenTemplateForm TItem="UserRegistrationDto" Data=@userRegistration Submit=@HandleValidSubmit Context="regis">
+        <RadzenFieldset Legend="Register">
+            <RadzenStack Gap="1rem">
+                <RadzenFormField Text="Numele" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="FirstName" @bind-Value=@userRegistration.FirstName />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="FirstName" Text="Numele este obligatoriu." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField Text="Prenumele" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="LastName" @bind-Value=@userRegistration.LastName />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="LastName" Text="Prenumele este obligatoriu." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField Text="Email" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenTextBox Name="Email" @bind-Value=@userRegistration.Email />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Email" Text="Email-ul este obligatoriu." />
+                        <RadzenEmailValidator Component="Email" Text="Email invalid." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField Text="Parola" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenPassword Name="Password" @bind-Value=@userRegistration.Password />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Password" Text="Parola este obligatorie." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenFormField Text="Confirmați parola" Variant="Variant.Outlined">
+                    <ChildContent>
+                        <RadzenPassword Name="ConfirmPassword" @bind-Value=@userRegistration.ConfirmPassword />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenCompareValidator Component="ConfirmPassword" Text="Parola nu coincide."
+                            Value=@userRegistration.Password />
+                        <RadzenRequiredValidator Component="ConfirmPassword" Text="Parola este obligatoriu." />
+                    </Helper>
+                </RadzenFormField>
+
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Text="Înregistrează-te"
+                    style="margin-top: 1rem; align-self: flex-end;" />
+            </RadzenStack>
+        </RadzenFieldset>
+    </RadzenTemplateForm>
+</RadzenCard>
+
+@code {
+    private UserRegistrationDto userRegistration = new UserRegistrationDto();
+
+    private async Task HandleValidSubmit()
+    {
+        var success = await _userService.Register(userRegistration);
+        if (success)
+        {
+            Navigation.NavigateTo("/");
+            Navigation.Refresh();
+        }
+    }
+}

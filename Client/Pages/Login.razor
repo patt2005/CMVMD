@@ -1,0 +1,53 @@
+@page "/admin/logare"
+@using CMVMD.Client.Services.User
+@using CMVMD.Shared.Models
+@inject IUserService _userService
+@inject NavigationManager Navigation
+
+<RadzenCard class="rz-my-12 rz-mx-auto rz-p-4 rz-p-md-12" style="max-width: 600px;">
+    <RadzenText TextStyle="TextStyle.H5" FontWeight="700" Color="#333333" style="margin-bottom: 1rem;">
+        <strong>Logare cont</strong>
+    </RadzenText>
+
+    @if (showError)
+    {
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            Datele introduse nu sunt valide. Vă rugăm să încercați din nou.
+        </div>
+    }
+
+    <RadzenTemplateForm Data=@("LoginWithDefaultValues") Context="formContext">
+        <RadzenLogin AllowRegister="true" AllowResetPassword="true" Username=@loginDto.Email Password=@loginDto.Password
+            AllowRememberMe="true" RememberMe="@rememberMe" Login=@(args => OnLogin(args)) Register=@(args =>
+            OnRegister()) UserText="Email" PasswordText="Parola" RememberMeText="Ține-mă minte" LoginText="Logare"
+            RegisterText="Înregistrează-te" RegisterMessageText="Nu aveți încă un cont?" ResetPasswordText="" />
+    </RadzenTemplateForm>
+
+</RadzenCard>
+
+@code {
+    private LoginDto loginDto = new LoginDto();
+    private bool rememberMe = true;
+    private bool showError = false;
+
+    private async Task OnLogin(LoginArgs args)
+    {
+        loginDto.Email = args.Username;
+        loginDto.Password = args.Password;
+        var success = await _userService.Login(loginDto);
+        if (success)
+        {
+            Navigation.NavigateTo("/");
+            Navigation.Refresh();
+        }
+        else
+        {
+            showError = true;
+        }
+    }
+
+    private void OnRegister()
+    {
+        Navigation.NavigateTo("/admin/registreaza");
+    }
+}

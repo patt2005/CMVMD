@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "BFPpPxMKuiY=",
+  "dgSpecHash": "+vgvk4nYhHs=",
   "success": true,
   "projectFilePath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj",
   "expectedPackageFiles": [
+    "/Users/petrugrigor/.nuget/packages/blazored.localstorage/4.3.0/blazored.localstorage.4.3.0.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/dartsassbuilder/1.0.0/dartsassbuilder.1.0.0.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.authorization/8.0.8/microsoft.aspnetcore.authorization.8.0.8.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components/8.0.8/microsoft.aspnetcore.components.8.0.8.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components.analyzers/8.0.8/microsoft.aspnetcore.components.analyzers.8.0.8.nupkg.sha512",
+    "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components.authorization/8.0.5/microsoft.aspnetcore.components.authorization.8.0.5.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components.forms/8.0.8/microsoft.aspnetcore.components.forms.8.0.8.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components.web/8.0.8/microsoft.aspnetcore.components.web.8.0.8.nupkg.sha512",
     "/Users/petrugrigor/.nuget/packages/microsoft.aspnetcore.components.webassembly/8.0.8/microsoft.aspnetcore.components.webassembly.8.0.8.nupkg.sha512",

@@ -19,4 +19,5 @@ public class AppDbContext : DbContext
     public DbSet<Entities.File> Files { get; set; }
     public DbSet<Veterinarian> Veterinarians { get; set; }
     public DbSet<Event> Events { get; set; }
+    public DbSet<User> Users { get; set; }
 }
