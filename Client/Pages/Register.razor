@@ -12,6 +12,13 @@
         <strong>Înregistrează-te</strong>
     </RadzenText>
 
+    @if (showError)
+    {
+        <div class="alert alert-danger" style="margin-bottom: 1rem;">
+            Acest email este deja îregistrat. Vă rugăm să încercați din nou.
+        </div>
+    }
+
     <RadzenTemplateForm TItem="UserRegistrationDto" Data=@userRegistration Submit=@HandleValidSubmit Context="regis">
         <RadzenFieldset Legend="Register">
             <RadzenStack Gap="1rem">
@@ -72,6 +79,7 @@
 
 @code {
     private UserRegistrationDto userRegistration = new UserRegistrationDto();
+    private bool showError = false;
 
     private async Task HandleValidSubmit()
     {
@@ -80,6 +88,10 @@
         {
             Navigation.NavigateTo("/");
             Navigation.Refresh();
+        }
+        else
+        {
+            showError = true;
         }
     }
 }

@@ -18,13 +18,16 @@
                     <RadzenStack Gap="1rem">
                         <RadzenText TextStyle="TextStyle.H4" FontWeight="700" Color="#333333"
                             style="margin-bottom: 1rem;">
-                            <strong>Editează articolul</strong>
+                            <strong>Editează evenimentul</strong>
                         </RadzenText>
 
-                        <RadzenLabel Text="Selectează Data" Component="RadzenDatePickerBindValue" />
-                        <RadzenDatePicker @bind-Value=@eventObj.StartDate ShowTime="true" ShowSeconds="true"
-                            HoursStep="1.5" MinutesStep="5" SecondsStep="10" DateFormat="MM/dd/yyyy HH:mm"
-                            Name="DatePickerWithTime" />
+                        <RadzenLabel Text="Selectați data de începere" Component="RadzenDatePickerBindValue" />
+                        <RadzenDatePicker @bind-Value=@eventObj.StartDate ShowTime="true" ShowSeconds="false"
+                            HoursStep="1.5" MinutesStep="5" DateFormat="MM/dd/yyyy HH:mm" Name="DatePickerWithTime" />
+
+                        <RadzenLabel Text="Selectați data de încheiere" Component="RadzenDatePickerBindValue" />
+                        <RadzenDatePicker @bind-Value=@eventObj.EndDate ShowTime="true" ShowSeconds="false"
+                            HoursStep="1.5" MinutesStep="5" DateFormat="MM/dd/yyyy HH:mm" Name="DatePickerWithTime" />
 
                         @if (eventObj.File != null)
                         {
@@ -112,6 +115,16 @@
                     Duration = 4000
                 });
             return;
+        }
+
+        eventObj.StartDate = eventObj.StartDate.ToUniversalTime();
+        if (eventObj.EndDate == null)
+        {
+            eventObj.EndDate = eventObj.StartDate;
+        }
+        else
+        {
+            eventObj.EndDate = eventObj.EndDate?.ToUniversalTime();
         }
 
         if (!string.IsNullOrEmpty(EventId))

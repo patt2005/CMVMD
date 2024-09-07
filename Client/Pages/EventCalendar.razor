@@ -13,9 +13,9 @@
 
 @inject TooltipService TooltipService
 
-@if (events.Count() != 0)
+@if (events.Count() != 0 || isLoading)
 {
-    <RadzenScheduler style="height: 75vh;" TItem="EventDto" Data=@events StartProperty="StartDate" EndProperty="EndDate"
+    <RadzenScheduler style="height: 75vh;" TItem="EventDto" Data="@events" StartProperty="StartDate" EndProperty="EndDate"
     TextProperty="Title" SelectedIndex="0" AppointmentSelect="OnAppointmentClick">
     <RadzenMonthView />
     <RadzenYearView />
@@ -32,14 +32,19 @@ else
 
 @code {
     IEnumerable<EventDto> events = Enumerable.Empty<EventDto>();
+    private bool isLoading { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        isLoading = false;
         events = await _eventService.GetEventsAsync();
+        Console.WriteLine(events.Count().ToString());
         foreach (var eventObj in events)
         {
-            Console.WriteLine(eventObj.EndDate);
+            Console.WriteLine(eventObj.Title);
         }
+        isLoading = true;
+        StateHasChanged();
     }
 
     private void OnAppointmentClick(SchedulerAppointmentSelectEventArgs<EventDto> args)
