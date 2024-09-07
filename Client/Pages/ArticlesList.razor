@@ -6,24 +6,35 @@
 <PageTitle>Articole</PageTitle>
 
 <div class="page-header">
-    <RadzenText style="padding-bottom: 2rem; align-items: center;" class="text-center" TextStyle="TextStyle.H4">
+    <RadzenText style="align-items: center;" class="text-center" TextStyle="TextStyle.H4">
         <strong>Articole</strong>
     </RadzenText>
 </div>
 
-<div class="article-container">
+@if (articles.Count() != 0)
+{
+    <div class="article-container">
     @foreach (var article in articles)
-    {
-        <div class="article-card">
-            <img src="@article.File?.FileUrl" class="card-img-top" alt="Article Image" />
-            <div class="card-body">
-                <h5 class="card-title truncate-2-lines">@article.Title</h5>
-                <p class="card-subtitle truncate-2-lines">@article.SubTitle</p>
-                <a href="/articol/@article.Id" class="btn-primary">Citește</a>
+        {
+            <div class="article-card">
+                <img src="@article.File?.FileUrl" class="card-img-top" alt="Article Image" />
+                <div class="card-body">
+                    <h5 class="card-title truncate-2-lines">@article.Title</h5>
+                    <p class="card-subtitle truncate-2-lines">@article.SubTitle</p>
+                    <a href="/articol/@article.Id" class="btn-primary">Citește</a>
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+}
+else
+{
+    <div style="padding: 2rem;">
+    <RadzenCard>
+        <RadzenText Text="Nu există încă articole publicate." />
+    </RadzenCard>
 </div>
+}
 
 @code {
     IEnumerable<ArticleDto> articles = Enumerable.Empty<ArticleDto>();
