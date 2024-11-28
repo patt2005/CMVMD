@@ -13,123 +13,125 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = CMVMD.Client
 build_property.RootNamespace = CMVMD.Client
-build_property.ProjectDir = /Users/petrugrigor/Documents/VetSite/CMVMD/Client/
+build_property.ProjectDir = /Users/victor/CMVMD/Client/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/petrugrigor/Documents/VetSite/CMVMD/Client
+build_property.MSBuildProjectDirectory = /Users/victor/CMVMD/Client
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/App.razor]
+[/Users/victor/CMVMD/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddMember.razor]
+[/Users/victor/CMVMD/Client/Pages/AddMember.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkTWVtYmVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/AddVeterinarian.razor]
+[/Users/victor/CMVMD/Client/Pages/AddVeterinarian.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQWRkVmV0ZXJpbmFyaWFuLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ComisionComponent.razor]
+[/Users/victor/CMVMD/Client/Pages/ComisionComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ29taXNpb25Db21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/DentistryCommision.razor]
+[/Users/victor/CMVMD/Client/Pages/DentistryCommision.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVudGlzdHJ5Q29tbWlzaW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditArticle.razor]
+[/Users/victor/CMVMD/Client/Pages/EditArticle.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdEFydGljbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditEvent.razor]
+[/Users/victor/CMVMD/Client/Pages/EditEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdEV2ZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditLegislationDocument.razor]
+[/Users/victor/CMVMD/Client/Pages/EditLegislationDocument.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdExlZ2lzbGF0aW9uRG9jdW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EditTrainingDocument.razor]
+[/Users/victor/CMVMD/Client/Pages/EditTrainingDocument.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRWRpdFRyYWluaW5nRG9jdW1lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/EventCalendar.razor]
+[/Users/victor/CMVMD/Client/Pages/EventCalendar.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXZlbnRDYWxlbmRhci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ExecutiveOffice.razor]
+[/Users/victor/CMVMD/Client/Pages/ExecutiveOffice.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXhlY3V0aXZlT2ZmaWNlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Legislation.razor]
+[/Users/victor/CMVMD/Client/Pages/Legislation.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTGVnaXNsYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Login.razor]
+[/Users/victor/CMVMD/Client/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Register.razor]
+[/Users/victor/CMVMD/Client/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/TrainingDocuments.razor]
+[/Users/victor/CMVMD/Client/Pages/TrainingDocuments.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVHJhaW5pbmdEb2N1bWVudHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/VeterinarianList.razor]
+[/Users/victor/CMVMD/Client/Pages/VeterinarianList.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmV0ZXJpbmFyaWFuTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/DialogTemplate.razor]
+[/Users/victor/CMVMD/Client/Shared/DialogTemplate.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RpYWxvZ1RlbXBsYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/DocumentsTable.razor]
+[/Users/victor/CMVMD/Client/Shared/DocumentsTable.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0RvY3VtZW50c1RhYmxlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/MembersTable.razor]
+[/Users/victor/CMVMD/Client/Shared/MembersTable.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01lbWJlcnNUYWJsZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/_Imports.razor]
+[/Users/victor/CMVMD/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ArticlesList.razor]
+[/Users/victor/CMVMD/Client/Pages/ArticlesList.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXJ0aWNsZXNMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-7kjnkpjxy2
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/GeneralPresentation.razor]
+[/Users/victor/CMVMD/Client/Pages/GeneralPresentation.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2VuZXJhbFByZXNlbnRhdGlvbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-ggoppa6ea2
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/Index.razor]
+[/Users/victor/CMVMD/Client/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-db127uti6s
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ViewArticle.razor]
+[/Users/victor/CMVMD/Client/Pages/ViewArticle.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0FydGljbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-45zg2iq5pj
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Pages/ViewEvent.razor]
+[/Users/victor/CMVMD/Client/Pages/ViewEvent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVmlld0V2ZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-7jldhni7pa
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/Footer.razor]
+[/Users/victor/CMVMD/Client/Shared/Footer.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0Zvb3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-7uqzla17wq
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/MainLayout.razor]
+[/Users/victor/CMVMD/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-wo13wcc0pz
 
-[/Users/petrugrigor/Documents/VetSite/CMVMD/Client/Shared/NavMenu.razor]
+[/Users/victor/CMVMD/Client/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-2zplgv5roi

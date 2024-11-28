@@ -10,11 +10,11 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Radzen.Blazor" Version="5.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -33,5 +33,14 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\web.config" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\appsettings.json" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\BlazorDebugProxy\BrowserDebugHost.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\CMVMD.Server.deps.json" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\CMVMD.Server.runtimeconfig.json" />
+    <_ContentIncludedByDefault Remove="root@185.209.223.4\wwwroot\_framework\blazor.boot.json" />
   </ItemGroup>
 </Project>

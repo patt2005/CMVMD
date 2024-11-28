@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj": {}
+    "/Users/victor/CMVMD/Server/CMVMD.Server.csproj": {}
   },
   "projects": {
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj": {
+    "/Users/victor/CMVMD/Client/CMVMD.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj",
+        "projectUniqueName": "/Users/victor/CMVMD/Client/CMVMD.Client.csproj",
         "projectName": "CMVMD.Client",
-        "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj",
-        "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-        "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/obj/",
+        "projectPath": "/Users/victor/CMVMD/Client/CMVMD.Client.csproj",
+        "packagesPath": "/Users/victor/.nuget/packages/",
+        "outputPath": "/Users/victor/CMVMD/Client/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
+          "/Users/victor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj": {
-                "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj"
+              "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj": {
+                "projectPath": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj"
               }
             }
           }
@@ -40,8 +40,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -57,12 +58,12 @@
             },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
@@ -70,7 +71,7 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
@@ -79,13 +80,13 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )",
+              "version": "[8.0.11, )",
               "autoReferenced": true
             },
             "Microsoft.NET.Sdk.WebAssembly.Pack": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.7, )",
+              "version": "[9.0.0, )",
               "autoReferenced": true
             },
             "Newtonsoft.Json": {
@@ -108,12 +109,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/victor/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -122,17 +137,17 @@
         }
       }
     },
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj": {
+    "/Users/victor/CMVMD/Persistance/Persistance.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj",
+        "projectUniqueName": "/Users/victor/CMVMD/Persistance/Persistance.csproj",
         "projectName": "Persistance",
-        "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj",
-        "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-        "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/obj/",
+        "projectPath": "/Users/victor/CMVMD/Persistance/Persistance.csproj",
+        "packagesPath": "/Users/victor/.nuget/packages/",
+        "outputPath": "/Users/victor/CMVMD/Persistance/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
+          "/Users/victor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -154,8 +169,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -163,13 +179,13 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -191,26 +207,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/victor/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj": {
+    "/Users/victor/CMVMD/Server/CMVMD.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj",
+        "projectUniqueName": "/Users/victor/CMVMD/Server/CMVMD.Server.csproj",
         "projectName": "CMVMD.Server",
-        "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/CMVMD.Server.csproj",
-        "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-        "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Server/obj/",
+        "projectPath": "/Users/victor/CMVMD/Server/CMVMD.Server.csproj",
+        "packagesPath": "/Users/victor/.nuget/packages/",
+        "outputPath": "/Users/victor/CMVMD/Server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
+          "/Users/victor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -222,14 +248,14 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj": {
-                "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Client/CMVMD.Client.csproj"
+              "/Users/victor/CMVMD/Client/CMVMD.Client.csproj": {
+                "projectPath": "/Users/victor/CMVMD/Client/CMVMD.Client.csproj"
               },
-              "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj": {
-                "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Persistance/Persistance.csproj"
+              "/Users/victor/CMVMD/Persistance/Persistance.csproj": {
+                "projectPath": "/Users/victor/CMVMD/Persistance/Persistance.csproj"
               },
-              "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj": {
-                "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj"
+              "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj": {
+                "projectPath": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj"
               }
             }
           }
@@ -242,8 +268,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -255,11 +282,11 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Components.WebAssembly.Server": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.AspNetCore.Mvc.Versioning": {
               "target": "Package",
@@ -269,7 +296,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Radzen.Blazor": {
               "target": "Package",
@@ -291,6 +318,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -299,21 +340,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/victor/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj": {
+    "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj",
+        "projectUniqueName": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj",
         "projectName": "CMVMD.Shared",
-        "projectPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/CMVMD.Shared.csproj",
-        "packagesPath": "/Users/petrugrigor/.nuget/packages/",
-        "outputPath": "/Users/petrugrigor/Documents/VetSite/CMVMD/Shared/obj/",
+        "projectPath": "/Users/victor/CMVMD/Shared/CMVMD.Shared.csproj",
+        "packagesPath": "/Users/victor/.nuget/packages/",
+        "outputPath": "/Users/victor/CMVMD/Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/petrugrigor/.nuget/NuGet/NuGet.Config"
+          "/Users/victor/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -335,8 +376,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -352,12 +394,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.11, 8.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/victor/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

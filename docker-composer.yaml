@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+    ports:
+      - "8080:8080" # Mapare porturi între container și gazdă
+    volumes:
+      - ./Files:/app/Files # Montare volum pentru fișiere
+    environment:
+      DOTNET_ENVIRONMENT: Production
+      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=YourDatabase;Username=postgres;Password=YourPassword"
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: YourPassword
+      POSTGRES_DB: YourDatabase
+    ports:
+      - "5432:5432" # Port PostgreSQL
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  db_data: # Volum pentru persistența datelor bazei de date
+  files:   # Volum pentru directorul Files
