@@ -21,8 +21,6 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = /Users/victor/CMVMD/Client
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 8.0
-build_property.EnableCodeStyleSeverity = 
 
 [/Users/victor/CMVMD/Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y

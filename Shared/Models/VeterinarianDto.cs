@@ -7,7 +7,13 @@ public class VeterinarianDto
     public string LastName { get; set; } = default!;
     public string VeterinarianCode { get; set; } = default!;
     public string DiplomaId { get; set; } = default!;
-    public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
+    private DateTime _registrationDate;
+
+    public DateTime RegistrationDate
+    {
+        get => _registrationDate;
+        set => _registrationDate = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+    }
     public bool IsActive { get; set; }
     public bool HasPenalties { get; set; }
 }

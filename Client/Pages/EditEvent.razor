@@ -117,14 +117,14 @@
             return;
         }
 
-        eventObj.StartDate = eventObj.StartDate.ToUniversalTime();
+        eventObj.StartDate =  eventObj.StartDate.ToUniversalTime();
         if (eventObj.EndDate == null)
         {
             eventObj.EndDate = eventObj.StartDate;
         }
         else
         {
-            eventObj.EndDate = eventObj.EndDate?.ToUniversalTime();
+            eventObj.EndDate = eventObj.EndDate.ToUniversalTime();
         }
 
         if (!string.IsNullOrEmpty(EventId))

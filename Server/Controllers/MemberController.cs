@@ -198,7 +198,7 @@ public class MemberController : ControllerBase
             LastName = dto.LastName.Trim(),
             VeterinarianCode = dto.VeterinarianCode,
             DiplomaId = dto.DiplomaId,
-            RegistrationDate = dto.RegistrationDate.ToUniversalTime(),
+            RegistrationDate = DateTime.SpecifyKind(dto.RegistrationDate, DateTimeKind.Utc) ,
             IsActive = dto.IsActive,
             HasPenalties = false // Default value
         }).ToList();
