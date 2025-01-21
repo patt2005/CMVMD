@@ -16,12 +16,12 @@ public class UploadController : ControllerBase
     private readonly IMapper _mapper;
     private readonly UploadFileConfig _config;
 
-    public UploadController(IFileService fileService, IOptions<UploadFileConfig> config, AppDbContext appDbContext, IMapper mapper)
+    public UploadController(IFileService fileService, UploadFileConfig config, AppDbContext appDbContext, IMapper mapper)
     {
         _fileService = fileService;
         _appDbContext = appDbContext;
         _mapper = mapper;
-        _config = config.Value;
+        _config = config;
     }
 
     [HttpPost("image")]
@@ -30,7 +30,7 @@ public class UploadController : ControllerBase
         try
         {
             string fileName = await _fileService.Add(file);
-            var url = Url.Content($"{_config.GeneralAppUrl}/Files/{fileName}");
+            var url = $"{_config.FolderPath}/{fileName}";
             return Ok(new { Url = url });
         }
         catch (Exception ex)
@@ -48,7 +48,7 @@ public class UploadController : ControllerBase
             var newFile = new FileDto()
             {
                 FileName = fileName,
-                FileUrl = Url.Content($"{_config.GeneralAppUrl}/Files/{fileName}"),
+                FileUrl = Url.Content($"{_config.FolderPath}/{fileName}"),
                 Id = Guid.NewGuid()
             };
             _appDbContext.Files.Add(_mapper.Map<Persistance.Entities.File>(newFile));

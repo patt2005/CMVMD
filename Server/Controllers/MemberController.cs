@@ -165,26 +165,26 @@ public class MemberController : ControllerBase
     }
 
     [HttpPost("upload-file")]
-    public async Task<IActionResult> UploadVeterinariansFile(IFormFile file)
+    public async Task<IActionResult> UploadVeterinariansFile(IList<VeterinarianDto> veterinariansDto)
     {
-        if (file == null || file.Length == 0)
-        {
-            return BadRequest("No file provided.");
-        }
-
-        List<VeterinarianDto> veterinariansDto;
-        using (var stream = new StreamReader(file.OpenReadStream()))
-        {
-            var content = await stream.ReadToEndAsync();
-            try
-            {
-                veterinariansDto = System.Text.Json.JsonSerializer.Deserialize<List<VeterinarianDto>>(content);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Invalid JSON format: {ex.Message}");
-            }
-        }
+        // if (file == null || file.Length == 0)
+        // {
+        //     return BadRequest("No file provided.");
+        // }
+        //
+        // List<VeterinarianDto> veterinariansDto;
+        // using (var stream = new StreamReader(file.OpenReadStream()))
+        // {
+        //     var content = await stream.ReadToEndAsync();
+        //     try
+        //     {
+        //         veterinariansDto = System.Text.Json.JsonSerializer.Deserialize<List<VeterinarianDto>>(content);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest($"Invalid JSON format: {ex.Message}");
+        //     }
+        // }
 
         if (veterinariansDto == null || !veterinariansDto.Any())
         {
@@ -198,7 +198,7 @@ public class MemberController : ControllerBase
             LastName = dto.LastName.Trim(),
             VeterinarianCode = dto.VeterinarianCode,
             DiplomaId = dto.DiplomaId,
-            RegistrationDate = dto.RegistrationDate,
+            RegistrationDate = dto.RegistrationDate.ToUniversalTime(),
             IsActive = dto.IsActive,
             HasPenalties = false // Default value
         }).ToList();

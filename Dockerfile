@@ -1,5 +1,5 @@
 ﻿# Imaginea de bază pentru rulare
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled-extra AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy AS base
 WORKDIR /app
 EXPOSE 8080
 
@@ -17,6 +17,10 @@ RUN dotnet publish "Server/CMVMD.Server.csproj" --configuration $BUILD_CONFIGURA
 # Faza finală - construirea imaginii pentru rulare
 FROM base AS final
 WORKDIR /app
-COPY --chown=1000 --from=build /publish .
+COPY --from=build /publish .
 
+# Script pentru migrații
+
+
+# Configurarea entrypoint-ului
 ENTRYPOINT ["dotnet", "CMVMD.Server.dll"]

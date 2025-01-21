@@ -7,9 +7,9 @@ public class FileService : IFileService
 {
     private readonly UploadFileConfig _fileConfig;
 
-    public FileService(IOptions<UploadFileConfig> fileConfig)
+    public FileService(UploadFileConfig fileConfig)
     {
-        _fileConfig = fileConfig.Value;
+        _fileConfig = fileConfig;
     }
 
     public async Task<string> Add(IFormFile file)

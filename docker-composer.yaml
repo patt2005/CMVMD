@@ -1,35 +1,33 @@
-version: "3.9"
+version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        BUILD_CONFIGURATION: Release
+    image: mamaligalover/cmv:latest # Folosește imaginea de pe Docker Hub
     ports:
-      - "8080:8080" # Mapare porturi între container și gazdă
+      - "8080:8080"
     volumes:
-      - ./Files:/app/Files # Montare volum pentru fișiere
+      - ./uploads:/app/uploads # Salvare fișiere pe diskul local
     environment:
-      DOTNET_ENVIRONMENT: Production
-      ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=YourDatabase;Username=postgres;Password=YourPassword"
+      - UPLOADS_PATH=/app/uploads
+      - ConnectionStrings__DefaultConnection=Server=db;Database=CMVMD;User Id=postgres;Password=postgres;
+      - ASPNETCORE_ENVIRONMENT=Production
     depends_on:
-      - db
-    restart: always
+      db:
+        condition: service_healthy
 
   db:
-    image: postgres:latest
+    image: postgres:15
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: YourPassword
-      POSTGRES_DB: YourDatabase
-    ports:
-      - "5432:5432" # Port PostgreSQL
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: CMVMD
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - db_data:/var/lib/postgresql/data
-    restart: always
 
 volumes:
-  db_data: # Volum pentru persistența datelor bazei de date
-  files:   # Volum pentru directorul Files
+  db_data:
